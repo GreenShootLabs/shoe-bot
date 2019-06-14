@@ -15,7 +15,17 @@ class SetUpConversations extends Command
 
     private static $conversations = [
         'resources/conversations/no_match_conversation',
-        'resources/conversations/welcome'
+        'resources/conversations/welcome',
+        'resources/conversations/close_conversation',
+        'resources/conversations/get_distance',
+        'resources/conversations/get_experience',
+        'resources/conversations/get_frequency',
+        'resources/conversations/get_remaining_details',
+        'resources/conversations/get_surface',
+        'resources/conversations/get_updates',
+        'resources/conversations/pronation_help',
+        'resources/conversations/shoe_discovery_conversation',
+        'resources/conversations/store_foot_type',
     ];
 
     public function handle()

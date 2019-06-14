@@ -8,14 +8,17 @@ return [
      * Mapping is {luis_entity_type} => {OD_attribute_name}
      */
     'luis_entities' => [
-//         'example_type' => 'first_name'
+        'ExperienceLevel' => 'experience',
+        'Distance' => 'distance',
+        'LengthOfTime' => 'length',
+        'Surface' => 'surface'
     ],
 
     /**
      * Custom interpreters registered in the format
      */
     'custom_interpreters' => [
-//    \OpenDialogAi\InterpreterEngine\tests\Interpreters\DummyInterpreter::class
+        \OpenDialogAi\InterpreterEngine\Interpreters\LuisInterpreter::class
     ],
 
     'default_interpreter' => 'interpreter.core.callbackInterpreter',
@@ -25,6 +28,23 @@ return [
      */
     'supported_callbacks' => [
         'WELCOME' => 'intent.core.welcome',
-        'list_message' => 'intent.core.TestListMessage'
+        'list_message' => 'intent.core.TestListMessage',
+        'start_discovery' => 'intent.shoebot.startShoeDiscovery',
+        'end_conversation' => 'intent.shoebot.endConversation',
+        'book_call' => 'intent.shoebot.bookCall',
+        'no_call' => 'intent.shoebot.noCall',
+        'continue' => 'intent.shoebot.continue',
+        'distance' => 'intent.shoebot.distance',
+        'surface' => 'intent.shoebot.surface',
+        'frequency' => 'intent.shoebot.frequency',
+        'experience' => 'intent.shoebot.experience',
+        'sturdiness' => 'intent.shoebot.sturdiness',
+        'foot_type' => 'intent.shoebot.footType',
+        'gender' => 'intent.shoebot.gender',
+        'yes_updates' => 'intent.shoebot.getUpdates',
+        'no_updates' => 'intent.shoebot.noUpdates',
+        'pronation_help' => 'intent.shoebot.pronationHelp',
+        'pronation_continue' => 'intent.shoebot.pronationHelpContinue',
+        'pronation_end' => 'intent.shoebot.pronationHelpEnd',
     ]
 ];
