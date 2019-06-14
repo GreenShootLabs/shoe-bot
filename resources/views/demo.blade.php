@@ -45,12 +45,6 @@
         window.openDialogSettings = {
             url: "{{ env("APP_URL") }}",
             teamName: 'OpenDialog Webchat',
-            user: {
-                first_name: 'Example',
-                last_name: 'User',
-                email: 'user@example.com',
-                external_id: '1',
-            },
         };
 
         const sendTriggerMessage = function() {
