@@ -1,4 +1,4 @@
-name: opendialog
+name: shoe-bot
 recipe: laravel
 config:
   webroot: public
