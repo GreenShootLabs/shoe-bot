@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "adminarchitect/core",
-            "version": "v1.6.10",
+            "version": "v1.6.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/adminarchitect/core.git",
-                "reference": "3c8f78fa476479fcccbd5b338e1a3879a9d21c63"
+                "reference": "69523594245e4ceeadb7b78c98316b71f2848cce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/adminarchitect/core/zipball/3c8f78fa476479fcccbd5b338e1a3879a9d21c63",
-                "reference": "3c8f78fa476479fcccbd5b338e1a3879a9d21c63",
+                "url": "https://api.github.com/repos/adminarchitect/core/zipball/69523594245e4ceeadb7b78c98316b71f2848cce",
+                "reference": "69523594245e4ceeadb7b78c98316b71f2848cce",
                 "shasum": ""
             },
             "require": {
@@ -76,7 +76,7 @@
                 }
             ],
             "description": "Active Admin for Laravel.",
-            "time": "2019-03-19T14:19:27+00:00"
+            "time": "2019-06-17T19:36:11+00:00"
         },
         {
             "name": "anahkiasen/underscore-php",
@@ -1709,16 +1709,16 @@
         },
         {
             "name": "league/commonmark",
-            "version": "0.19.2",
+            "version": "0.19.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "8401e1c1e409a08fcf558aadb6951c33749d701e"
+                "reference": "c6ecea928b432ae417fa9942840bbfd8c332448c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/8401e1c1e409a08fcf558aadb6951c33749d701e",
-                "reference": "8401e1c1e409a08fcf558aadb6951c33749d701e",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/c6ecea928b432ae417fa9942840bbfd8c332448c",
+                "reference": "c6ecea928b432ae417fa9942840bbfd8c332448c",
                 "shasum": ""
             },
             "require": {
@@ -1775,20 +1775,20 @@
                 "markdown",
                 "parser"
             ],
-            "time": "2019-05-19T13:39:36+00:00"
+            "time": "2019-06-18T18:29:15+00:00"
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.52",
+            "version": "1.0.53",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "c5a5097156387970e6f0ccfcdf03f752856f3391"
+                "reference": "08e12b7628f035600634a5e76d95b5eb66cea674"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/c5a5097156387970e6f0ccfcdf03f752856f3391",
-                "reference": "c5a5097156387970e6f0ccfcdf03f752856f3391",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/08e12b7628f035600634a5e76d95b5eb66cea674",
+                "reference": "08e12b7628f035600634a5e76d95b5eb66cea674",
                 "shasum": ""
             },
             "require": {
@@ -1859,7 +1859,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2019-05-20T20:21:14+00:00"
+            "time": "2019-06-18T20:09:29+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -2101,12 +2101,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/core.git",
-                "reference": "c7114d139c43e726f093d163235794bd71c85dfe"
+                "reference": "c02d4b3c3c65d5ae57628dcf416da6def1cd5969"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/core/zipball/c7114d139c43e726f093d163235794bd71c85dfe",
-                "reference": "c7114d139c43e726f093d163235794bd71c85dfe",
+                "url": "https://api.github.com/repos/opendialogai/core/zipball/c02d4b3c3c65d5ae57628dcf416da6def1cd5969",
+                "reference": "c02d4b3c3c65d5ae57628dcf416da6def1cd5969",
                 "shasum": ""
             },
             "require": {
@@ -2180,7 +2180,7 @@
                 "source": "https://github.com/opendialogai/core/tree/develop",
                 "issues": "https://github.com/opendialogai/core/issues"
             },
-            "time": "2019-06-14T14:25:35+00:00"
+            "time": "2019-06-18T10:59:53+00:00"
         },
         {
             "name": "opendialogai/webchat",
@@ -2188,12 +2188,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/webchat.git",
-                "reference": "35df663b4357a1b68d4b6514024bd2074646bec1"
+                "reference": "2a5431cdad16c2b106e83ec9630f2655137eaf2a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/webchat/zipball/35df663b4357a1b68d4b6514024bd2074646bec1",
-                "reference": "35df663b4357a1b68d4b6514024bd2074646bec1",
+                "url": "https://api.github.com/repos/opendialogai/webchat/zipball/2a5431cdad16c2b106e83ec9630f2655137eaf2a",
+                "reference": "2a5431cdad16c2b106e83ec9630f2655137eaf2a",
                 "shasum": ""
             },
             "require": {
@@ -2238,7 +2238,7 @@
                 "source": "https://github.com/opendialogai/webchat/tree/develop",
                 "issues": "https://github.com/opendialogai/webchat/issues"
             },
-            "time": "2019-06-14T13:45:04+00:00"
+            "time": "2019-06-19T08:15:05+00:00"
         },
         {
             "name": "opis/closure",
@@ -3015,16 +3015,16 @@
         },
         {
             "name": "spatie/commonmark-highlighter",
-            "version": "1.0.4",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/commonmark-highlighter.git",
-                "reference": "78be926433271435ee90b37dd1ff23bb6861d19f"
+                "reference": "e398103a8b27c7d3a033a795e7f6df3db83471d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/commonmark-highlighter/zipball/78be926433271435ee90b37dd1ff23bb6861d19f",
-                "reference": "78be926433271435ee90b37dd1ff23bb6861d19f",
+                "url": "https://api.github.com/repos/spatie/commonmark-highlighter/zipball/e398103a8b27c7d3a033a795e7f6df3db83471d0",
+                "reference": "e398103a8b27c7d3a033a795e7f6df3db83471d0",
                 "shasum": ""
             },
             "require": {
@@ -3061,7 +3061,7 @@
                 "commonmark-highlighter",
                 "spatie"
             ],
-            "time": "2019-05-06T06:44:03+00:00"
+            "time": "2019-06-16T17:37:37+00:00"
         },
         {
             "name": "spatie/laravel-activitylog",
@@ -5206,16 +5206,16 @@
         },
         {
             "name": "vlucas/phpdotenv",
-            "version": "v3.3.3",
+            "version": "v3.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vlucas/phpdotenv.git",
-                "reference": "dbcc609971dd9b55f48b8008b553d79fd372ddde"
+                "reference": "5084b23845c24dbff8ac6c204290c341e4776c92"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/dbcc609971dd9b55f48b8008b553d79fd372ddde",
-                "reference": "dbcc609971dd9b55f48b8008b553d79fd372ddde",
+                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/5084b23845c24dbff8ac6c204290c341e4776c92",
+                "reference": "5084b23845c24dbff8ac6c204290c341e4776c92",
                 "shasum": ""
             },
             "require": {
@@ -5229,7 +5229,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.3-dev"
+                    "dev-master": "3.4-dev"
                 }
             },
             "autoload": {
@@ -5254,7 +5254,7 @@
                 "env",
                 "environment"
             ],
-            "time": "2019-03-06T09:39:45+00:00"
+            "time": "2019-06-15T22:40:20+00:00"
         },
         {
             "name": "zendframework/zend-code",
