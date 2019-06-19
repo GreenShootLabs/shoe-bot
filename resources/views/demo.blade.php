@@ -39,6 +39,8 @@
             </div>
             <button>Update User attribute</button>
         </form>
+
+        <button onclick="document.querySelector('#opendialog-chatwindow').contentWindow.postMessage({ triggerConversation: {callback_id: 'WELCOME'} }, '*');">    Start Again</button>
     </div>
 
     <script>
