@@ -22,6 +22,7 @@ return [
          'shoe_2_desc' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
          'shoe_3_img' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
          'shoe_3_desc' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
+         'input' => \OpenDialogAi\Core\Attribute\StringAttribute::class
     ],
 
     /**

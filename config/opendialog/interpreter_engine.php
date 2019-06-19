@@ -18,7 +18,8 @@ return [
      * Custom interpreters registered in the format
      */
     'custom_interpreters' => [
-        \OpenDialogAi\InterpreterEngine\Interpreters\LuisInterpreter::class
+        \OpenDialogAi\InterpreterEngine\Interpreters\LuisInterpreter::class,
+        \App\Bot\Interpreters\DefaultInputInterpreter::class
     ],
 
     'default_interpreter' => 'interpreter.core.callbackInterpreter',
@@ -46,5 +47,6 @@ return [
         'pronation_help' => 'intent.shoebot.pronationHelp',
         'pronation_continue' => 'intent.shoebot.pronationHelpContinue',
         'pronation_end' => 'intent.shoebot.pronationHelpEnd',
+        'buy_now' => 'intent.shoebot.buyNow'
     ]
 ];
