@@ -26,6 +26,7 @@ class SetUpConversations extends Command
         'resources/conversations/pronation_help',
         'resources/conversations/shoe_discovery_conversation',
         'resources/conversations/store_foot_type',
+        'resources/conversations/buy_now',
     ];
 
     public function handle()
