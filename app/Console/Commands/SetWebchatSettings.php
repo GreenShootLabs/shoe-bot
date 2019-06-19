@@ -87,6 +87,7 @@ class SetWebchatSettings extends Command
             'showHistory' => true,
             'numberOfMessages' => 10,
             WebchatSetting::COLLECT_USER_IP => true,
+            WebchatSetting::CUSTOM_CSS_PATH => "$odUrl/css/bot.css"
         ];
 
         foreach ($settings as $name => $value) {
