@@ -13,22 +13,6 @@ class SetUpConversations extends Command
 
     protected $description = 'Sets up some example conversations for the opendialog project';
 
-    private static $conversations = [
-        'resources/conversations/no_match_conversation',
-        'resources/conversations/welcome',
-        'resources/conversations/close_conversation',
-        'resources/conversations/get_distance',
-        'resources/conversations/get_experience',
-        'resources/conversations/get_frequency',
-        'resources/conversations/get_remaining_details',
-        'resources/conversations/get_surface',
-        'resources/conversations/get_updates',
-        'resources/conversations/pronation_help',
-        'resources/conversations/shoe_discovery_conversation',
-        'resources/conversations/store_foot_type',
-        'resources/conversations/buy_now',
-    ];
-
     public function handle()
     {
         if (!$this->confirm('This will clear your local dgraph and all conversations. ' .
@@ -51,7 +35,8 @@ class SetUpConversations extends Command
             $conversation->save();
         });
 
-        foreach (self::$conversations as $conversation) {
+        $activeConversations = parse_ini_file(__DIR__ . '/active_conversations.ini')['conversations'];
+        foreach ($activeConversations as $conversation) {
             $this->importConversation($conversation);
         }
 
@@ -60,12 +45,11 @@ class SetUpConversations extends Command
 
     protected function importConversation($fileName): void
     {
-        $conversationName = array_last(explode('/', $fileName));
-        $this->info(sprintf('Importing conversation %s', $conversationName));
+        $this->info(sprintf('Importing conversation %s', $fileName));
         Artisan::call(
             'conversation:import',
             [
-                'filename' => $fileName,
+                'filename' => sprintf('resources/conversations/%s', $fileName),
                 '--publish' => true,
                 '--yes' => true
             ]
