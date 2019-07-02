@@ -10,7 +10,7 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "opendialogai/core": "dev-develop",
+        "opendialogai/core": "dev-feature/performance-improvements",
         "opendialogai/webchat": "dev-develop",
         "phalcongelist/php-diff": "^2.0",
         "spatie/commonmark-highlighter": "^1.0",
