@@ -47,6 +47,9 @@ return [
         'pronation_help' => 'intent.shoebot.pronationHelp',
         'pronation_continue' => 'intent.shoebot.pronationHelpContinue',
         'pronation_end' => 'intent.shoebot.pronationHelpEnd',
-        'buy_now' => 'intent.shoebot.buyNow'
+        'buy_now' => 'intent.shoebot.buyNow',
+        'experience_correct' => 'intent.shoebot.experienceCorrect',
+        'experience_incorrect' => 'intent.shoebot.experienceIncorrect',
+        'move_on' => 'intent.shoebot.moveOn'
     ]
 ];
