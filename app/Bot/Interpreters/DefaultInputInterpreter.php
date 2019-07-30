@@ -30,7 +30,6 @@ class DefaultInputInterpreter extends BaseInterpreter
 
             $inputAttribute = AttributeResolver::getAttributeFor('input', $utterance->getText());
             $intent->addAttribute($inputAttribute);
-
         }
 
         return [$intent];
