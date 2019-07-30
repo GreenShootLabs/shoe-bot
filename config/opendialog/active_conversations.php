@@ -7,6 +7,19 @@
  * These should be the names of all conversations that should be included with the opendialog chatbot
  */
 return [
+    'no_match_conversation',
     'welcome',
-    'no_match_conversation'
+    'close_conversation',
+    'get_distance',
+    'get_experience',
+    'get_frequency',
+    'get_remaining_details',
+    'get_surface',
+    'get_updates',
+    'pronation_help',
+    'shoe_discovery_conversation',
+    'store_foot_type',
+    'buy_now',
+    'move_on',
+    'experience_incorrect',
 ];
