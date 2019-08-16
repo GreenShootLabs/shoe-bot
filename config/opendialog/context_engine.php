@@ -10,11 +10,8 @@ return [
      */
     'custom_attributes' => [
          'experience' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
-         'distance' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
-         'frequency' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
          'surface' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
          'sturdiness' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
-         'footType' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
          'gender' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
          'shoe_1_img' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
          'shoe_1_desc' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
@@ -22,7 +19,12 @@ return [
          'shoe_2_desc' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
          'shoe_3_img' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
          'shoe_3_desc' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
-         'input' => \OpenDialogAi\Core\Attribute\StringAttribute::class
+         'first_name' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
+         'contact_number' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
+         'email' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
+         'distance' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
+         'freq' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
+         'pronation_type' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
     ],
 
     /**
@@ -32,6 +34,6 @@ return [
      * Custom contexts are used to make available application specific attributes that are externally managed
      */
     'custom_contexts' => [
-//        \OpenDialogAi\ContextEngine\tests\contexts\DummyCustomContext::class
+       \App\Bot\Contexts\DisplayContext::class
     ]
 ];

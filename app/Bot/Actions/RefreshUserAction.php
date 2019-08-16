@@ -15,7 +15,7 @@ class RefreshUserAction extends BaseAction
         'experience',
         'distance',
         'surface',
-        'frequency'
+        'freq'
     ];
 
     public function perform(ActionInput $actionInput): ActionResult
