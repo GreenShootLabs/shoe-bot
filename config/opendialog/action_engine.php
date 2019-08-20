@@ -9,6 +9,7 @@ return [
      */
     'custom_actions' => [
         \App\Bot\Actions\RefreshUserAction::class,
+        \App\Bot\Actions\GetRunnerExperienceAction::class,
         \App\Bot\Actions\GetShoes::class
     ],
 ];

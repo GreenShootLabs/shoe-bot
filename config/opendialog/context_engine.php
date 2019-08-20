@@ -25,6 +25,7 @@ return [
          'distance' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
          'freq' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
          'pronation_type' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
+         'started_discovery' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
     ],
 
     /**
