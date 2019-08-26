@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "953eb5a186efa440abaf2b8eba6b3f77",
+    "content-hash": "12e03db8bdebc0fefdeeb43c59959fe9",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -1839,16 +1839,16 @@
         },
         {
             "name": "opendialogai/core",
-            "version": "dev-develop",
+            "version": "dev-s8/feature/conditions",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/core.git",
-                "reference": "434eaf9d46404bb5db68c5ff37dc6d6b1d1eb879"
+                "reference": "2d4a2e8ce62650dbaeb080f21cf10bcf38216b90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/core/zipball/434eaf9d46404bb5db68c5ff37dc6d6b1d1eb879",
-                "reference": "434eaf9d46404bb5db68c5ff37dc6d6b1d1eb879",
+                "url": "https://api.github.com/repos/opendialogai/core/zipball/2d4a2e8ce62650dbaeb080f21cf10bcf38216b90",
+                "reference": "2d4a2e8ce62650dbaeb080f21cf10bcf38216b90",
                 "shasum": ""
             },
             "require": {
@@ -1878,6 +1878,7 @@
                         "OpenDialogAi\\ConversationLog\\ConversationLogServiceProvider",
                         "OpenDialogAi\\ResponseEngine\\ResponseEngineServiceProvider",
                         "OpenDialogAi\\InterpreterEngine\\InterpreterEngineServiceProvider",
+                        "OpenDialogAi\\OperationEngine\\OperationEngineServiceProvider",
                         "OpenDialogAi\\ContextEngine\\ContextEngineServiceProvider",
                         "OpenDialogAi\\ActionEngine\\ActionEngineServiceProvider",
                         "OpenDialogAi\\SensorEngine\\SensorEngineServiceProvider"
@@ -1897,6 +1898,7 @@
                     "OpenDialogAi\\ConversationLog\\": "src/ConversationLog",
                     "OpenDialogAi\\ResponseEngine\\": "src/ResponseEngine",
                     "OpenDialogAi\\InterpreterEngine\\": "src/InterpreterEngine",
+                    "OpenDialogAi\\OperationEngine\\": "src/OperationEngine",
                     "OpenDialogAi\\SensorEngine\\": "src/SensorEngine",
                     "OpenDialogAi\\Core\\Database\\": "database/"
                 }
@@ -1921,10 +1923,10 @@
             ],
             "description": "The OpenDialog core package",
             "support": {
-                "source": "https://github.com/opendialogai/core/tree/develop",
+                "source": "https://github.com/opendialogai/core/tree/s8/feature/conditions",
                 "issues": "https://github.com/opendialogai/core/issues"
             },
-            "time": "2019-08-20T13:44:16+00:00"
+            "time": "2019-08-23T15:17:38+00:00"
         },
         {
             "name": "opendialogai/webchat",
