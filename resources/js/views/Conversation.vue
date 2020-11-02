@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Breadcrumbs />
     <template v-if="currentRouteName == 'view-conversation'">
       <Conversation :id="id" />
     </template>
@@ -8,6 +9,12 @@
     </template>
     <template v-else-if="currentRouteName == 'add-conversation'">
       <AddConversation />
+    </template>
+    <template v-else-if="currentRouteName == 'conversations-archive'">
+        <ConversationArchive />
+    </template>
+    <template v-else-if="currentRouteName == 'conversation-message-templates'">
+        <ConversationMessageTemplates :id="id" />
     </template>
     <template v-else>
       <Conversations />
@@ -20,6 +27,9 @@ import AddConversation from '@/components/conversation/AddConversation';
 import Conversation from '@/components/conversation/Conversation';
 import Conversations from '@/components/conversation/Conversations';
 import EditConversation from '@/components/conversation/EditConversation';
+import ConversationArchive from '@/components/conversation/ConversationsArchive';
+import Breadcrumbs from "@/components/breadcrumbs/Breadcrumbs";
+import ConversationMessageTemplates from "@/components/conversation/ConversationMessageTemplates";
 
 export default {
   name: 'conversation',
@@ -29,6 +39,9 @@ export default {
     Conversation,
     Conversations,
     EditConversation,
+    ConversationArchive,
+    ConversationMessageTemplates,
+    Breadcrumbs
   },
   computed: {
     currentRouteName() {

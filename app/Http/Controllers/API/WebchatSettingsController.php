@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use OpenDialogAi\Webchat\WebchatSetting;
 
 class WebchatSettingsController extends Controller
@@ -18,47 +19,40 @@ class WebchatSettingsController extends Controller
         $this->middleware('auth');
     }
 
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return WebchatSetting[]
      */
     public function index()
     {
         return WebchatSetting::all();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Response
      */
     public function show($id)
     {
         return WebchatSetting::find($id);
     }
 
+
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param int     $id
+     * @return Response
      */
     public function update(Request $request, $id)
     {
+        /** @var WebchatSetting $setting */
         if ($setting = WebchatSetting::find($id)) {
             $value = $request->get('value');
 
@@ -74,23 +68,13 @@ class WebchatSettingsController extends Controller
         return response()->noContent(404);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 
     /**
      * @param WebchatSetting $setting
-     * @param string $newValue
+     * @param string         $newValue
      * @return string
      */
-    private function validateValue(WebchatSetting $setting, $newValue)
+    private function validateValue(WebchatSetting $setting, $newValue): ?string
     {
         switch ($setting->type) {
             case 'string':
@@ -99,17 +83,17 @@ class WebchatSettingsController extends Controller
                 }
                 break;
             case 'number':
-                if (!is_numeric($newValue)) {
+                if ($newValue && !is_numeric($newValue)) {
                     return 'This is not a valid number.';
                 }
                 break;
             case 'colour':
-                if (!preg_match('/#([a-f0-9]{3}){1,2}\b/i', $newValue)) {
+                if ($newValue && !preg_match('/#([a-f0-9]{3}){1,2}\b/i', $newValue)) {
                     return 'This is not a valid hex colour.';
                 }
                 break;
             case 'map':
-                if (json_decode($newValue) == null) {
+                if ($newValue && json_decode($newValue) == null) {
                     return 'This is not a valid json value.';
                 }
                 break;

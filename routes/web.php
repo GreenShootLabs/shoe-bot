@@ -15,12 +15,6 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-if (env("APP_DEBUG")) {
-        Route::get('/demo', function () {
-        return view('demo');
-    });
-}
-
 Auth::routes(['register' => false]);
 
 if (env("USE_2FA")) {
@@ -29,30 +23,117 @@ if (env("USE_2FA")) {
     Route::post('auth/two-factor', 'Auth\TwoFactorController@setupTwoFactorAuth');
 }
 
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('admin', 'AdminController@handle');
-    Route::get('admin/webchat-setting', 'AdminController@handle');
-    Route::get('admin/webchat-setting/{id}', 'AdminController@handle');
-    Route::get('admin/conversations', 'AdminController@handle');
-    Route::get('admin/conversations/{id}', 'AdminController@handle');
-    Route::get('admin/conversations/{id}/edit', 'AdminController@handle');
-    Route::get('admin/conversations/add', 'AdminController@handle');
-    Route::get('admin/outgoing-intents', 'AdminController@handle');
-    Route::get('admin/outgoing-intents/{outgoingIntent}', 'AdminController@handle');
-    Route::get('admin/outgoing-intents/{outgoingIntent}/edit', 'AdminController@handle');
-    Route::get('admin/outgoing-intents/add', 'AdminController@handle');
-    Route::get('admin/outgoing-intents/{outgoingIntent}/message-templates', 'AdminController@handle');
-    Route::get('admin/outgoing-intents/{outgoingIntent}/message-templates/{id}', 'AdminController@handle');
-    Route::get('admin/outgoing-intents/{outgoingIntent}/message-templates/{id}/edit', 'AdminController@handle');
-    Route::get('admin/outgoing-intents/{outgoingIntent}/message-templates/add', 'AdminController@handle');
-    Route::get('admin/chatbot-users', 'AdminController@handle');
-    Route::get('admin/chatbot-users/{id}', 'AdminController@handle');
-    Route::get('admin/chatbot-users/{id}/conversation-log', 'AdminController@handle');
-    Route::get('admin/users', 'AdminController@handle');
-    Route::get('admin/users/{id}', 'AdminController@handle');
-    Route::get('admin/users/{id}/edit', 'AdminController@handle');
-    Route::get('admin/users/add', 'AdminController@handle');
+Route::get('/', function () {
+    return view('welcome');
+});
 
-    Route::get('stats/users', 'StatisticsController@users');
-    Route::get('stats/cost', 'StatisticsController@cost');
+/**
+ * Admin Routes
+ */
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+    Route::get('/', 'AdminController@handle');
+
+    Route::get('/demo', 'AdminController@handle')->name('webchat-demo');
+
+    /**
+     * Webchat Settings
+     */
+    Route::prefix('webchat-setting')->group(function () {
+        Route::get('/', 'AdminController@handle');
+        Route::get('/{id}', 'AdminController@handle');
+    });
+
+    /**
+     * Conversations
+     */
+    Route::prefix('conversations')->group(function () {
+        Route::get('/', 'AdminController@handle');
+        Route::get('/add', 'AdminController@handle');
+        Route::get('/{id}', 'AdminController@handle');
+        Route::get('/{id}/edit', 'AdminController@handle');
+        Route::get('/{id}/message-templates', 'AdminController@handle');
+    });
+
+    /**
+     * Outgoing Intents
+     */
+    Route::prefix('outgoing-intents')->group(function () {
+        Route::get('/', 'AdminController@handle');
+        Route::get('/add', 'AdminController@handle');
+        Route::get('/{outgoingIntent}', 'AdminController@handle');
+        Route::get('/{outgoingIntent}/edit', 'AdminController@handle');
+
+        /**
+         * Message Templates
+         */
+        Route::prefix('/{outgoingIntent}/message-templates')->group(function () {
+            Route::get('/', 'AdminController@handle');
+            Route::get('/add', 'AdminController@handle');
+            Route::get('/{id}', 'AdminController@handle');
+            Route::get('/{id}/edit', 'AdminController@handle');
+        });
+    });
+
+    /**
+     * Chatbot Users
+     */
+    Route::prefix('chatbot-users')->group(function () {
+        Route::get('/', 'AdminController@handle');
+        Route::get('/{id}', 'AdminController@handle');
+        Route::get('/{id}/conversation-log', 'AdminController@handle');
+    });
+
+    /**
+     * Users
+     */
+    Route::prefix('users')->group(function () {
+        Route::get('/', 'AdminController@handle');
+        Route::get('/add', 'AdminController@handle');
+        Route::get('/{id}', 'AdminController@handle');
+        Route::get('/{id}/edit', 'AdminController@handle');
+    });
+
+    /**
+     * Requests
+     */
+    Route::prefix('requests')->group(function () {
+        Route::get('/', 'AdminController@handle');
+        Route::get('/{id}', 'AdminController@handle');
+    });
+
+    /**
+     * Global Contexts
+     */
+    Route::prefix('global-contexts')->group(function () {
+        Route::get('/', 'AdminController@handle');
+        Route::get('/add', 'AdminController@handle');
+        Route::get('/{id}', 'AdminController@handle');
+        Route::get('/{id}/edit', 'AdminController@handle');
+    });
+
+    /**
+     * Warnings
+     */
+    Route::prefix('warnings')->group(function () {
+        Route::get('/', 'AdminController@handle');
+        Route::get('/{id}', 'AdminController@handle');
+    });
+});
+
+/**
+ * Statistics Routes
+ */
+Route::prefix('stats')->middleware(['auth'])->group(function () {
+    Route::get('chatbot-users', 'StatisticsController@chatbotUsers');
+    Route::get('requests', 'StatisticsController@requests');
+    Route::get('conversations', 'StatisticsController@conversations');
+    Route::get('incoming-intents', 'StatisticsController@incomingIntents');
+    Route::get('message-templates', 'StatisticsController@messageTemplates');
+});
+
+Route::get('status', 'StatusController@handle');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('admin/logout', 'Auth\LoginController@logout');
+    Route::get('logout', 'Auth\LoginController@logout');
 });

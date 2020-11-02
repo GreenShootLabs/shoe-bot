@@ -8,27 +8,31 @@
           v-model="dateRange"
           @update="updateDateRange"
         >
-          <div slot="input" slot-scope="picker" style="min-width: 250px;">
+          <template v-slot:input="picker" style="min-width: 250px;">
             {{ picker.startDate | date }} - {{ picker.endDate | date }}
-          </div>
+          </template>
         </date-range-picker>
       </b-col>
     </b-row>
 
-    <b-row>
-      <line-chart-card name="Users" :start-date="startDate" :end-date="endDate" endpoint="/stats/users" :width="2"></line-chart-card>
-      <line-chart-card name="Users" :start-date="startDate" :end-date="endDate" endpoint="/stats/users" :width="2"></line-chart-card>
-    </b-row>
-    <b-row>
-      <single-number-card name="Cost" :start-date="startDate" :end-date="endDate" endpoint="/stats/cost" :width="3"></single-number-card>
-      <single-number-card name="Cost" :start-date="startDate" :end-date="endDate" endpoint="/stats/cost" :width="3"></single-number-card>
-      <single-number-card name="Cost" :start-date="startDate" :end-date="endDate" endpoint="/stats/cost" :width="3"></single-number-card>
-    </b-row>
+    <template v-for="row in dashboardCards">
+      <b-row>
+        <template v-for="card in row">
+          <template v-if="card.type == 'line-chart'">
+            <line-chart-card :name="card.name" :start-date="startDate" :end-date="endDate" :endpoint="card.endpoint" :width="card.width"></line-chart-card>
+          </template>
+          <template v-else-if="card.type == 'single-number'">
+            <single-number-card :name="card.name" :start-date="startDate" :end-date="endDate" :endpoint="card.endpoint" :width="card.width"></single-number-card>
+          </template>
+        </template>
+      </b-row>
+    </template>
   </div>
 </template>
 
 <script>
 import DateRangePicker from 'vue2-daterange-picker';
+import 'vue2-daterange-picker/dist/vue2-daterange-picker.css';
 
 import LineChartCard from '@/components/dashboard/LineChartCard';
 import SingleNumberCard from '@/components/dashboard/SingleNumberCard';
@@ -67,10 +71,28 @@ export default {
       endDate: moment().format('YYYY-MM-DD'),
     };
   },
+  computed: {
+    dashboardCards() {
+      return window.DashboardCards;
+    },
+  },
+  created() {
+    const dateRange = this.$cookies.get('filterDateRange');
+
+    if (dateRange) {
+      this.dateRange.startDate = dateRange.startDate;
+      this.dateRange.endDate = dateRange.endDate;
+
+      this.startDate = moment(dateRange.startDate).format('YYYY-MM-DD');
+      this.endDate = moment(dateRange.endDate).format('YYYY-MM-DD');
+    }
+  },
   methods: {
     updateDateRange() {
       this.startDate = moment(this.dateRange.startDate).format('YYYY-MM-DD');
       this.endDate = moment(this.dateRange.endDate).format('YYYY-MM-DD');
+
+      this.$cookies.set('filterDateRange', this.dateRange, 0);
     },
   }
 };

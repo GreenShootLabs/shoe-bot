@@ -25,6 +25,7 @@
                     <chrome-picker v-if="displayPicker == setting.id" v-model="setting.value" @input="updateFromPicker($event, setting)" />
                   </span>
                 </span>
+                <button class="reset" @click="resetColour(setting)"><i class="cui-circle-x"></i></button>
               </template>
               <template v-else-if="setting.type == 'map'">
                 <input class="form-control" v-model="setting.value" @blur="saveSetting(setting)" />
@@ -56,6 +57,7 @@ export default {
   data() {
     return {
       displayPicker: 0,
+      ready: false,
       showSpinner: false,
       subCategory: '',
       webchatSettings: [],
@@ -114,6 +116,10 @@ export default {
               }
             }
           });
+
+          setTimeout(() => {
+            this.ready = true;
+          }, 100);
         },
       );
     },
@@ -137,7 +143,14 @@ export default {
 
       this.saveSetting(setting);
     },
+    resetColour(setting) {
+      setting.value = '';
+
+      this.saveSetting(setting);
+    },
     saveSetting(setting) {
+      if (!this.ready) return;
+
       this.showSpinner = true;
       axios.patch('/admin/api/webchat-setting/' + setting.id, { value: setting.value })
         .then(() => {
@@ -159,7 +172,7 @@ export default {
 .color-picker-container {
   position: relative;
   display: table-cell;
-  padding: 6px 12px;
+  padding: 8px 12px;
   font-size: 14px;
   font-weight: 400;
   line-height: 1;
@@ -199,5 +212,16 @@ export default {
     width: 50px;
     height: 50px;
   }
+}
+
+.reset {
+  background-color: transparent;
+  border: 0;
+  -webkit-appearance: none;
+  margin: 7px 0 0 10px;
+  line-height: 0;
+  padding: 0;
+  height: 20px;
+  font-size: 20px;
 }
 </style>

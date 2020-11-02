@@ -36,7 +36,13 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['daily'],
+            'channels' => ['daily', 'warning_log'],
+            'ignore_exceptions' => false,
+        ],
+
+        'stack_with_dedupe' => [
+            'driver' => 'stack',
+            'channels' => ['stack', 'dedupe'],
             'ignore_exceptions' => false,
         ],
 
@@ -49,7 +55,7 @@ return [
         'daily' => [
             'driver' => 'daily',
             'path' => storage_path('logs/laravel.log'),
-            'level' => 'debug',
+            'level' => env('LOG_LEVEL', 'debug'),
             'days' => 14,
         ],
 
@@ -58,7 +64,17 @@ return [
             'url' => env('LOG_SLACK_WEBHOOK_URL'),
             'username' => 'Laravel Log',
             'emoji' => ':boom:',
-            'level' => 'critical',
+            'level' => 'error',
+        ],
+
+        'dedupe' => [
+            'driver' => 'custom',
+            'via' => App\Logging\CreateDedupeLogger::class,
+        ],
+
+        'warning_log' => [
+            'driver' => 'custom',
+            'via' => \App\Logging\WarningLog::class,
         ],
 
         'papertrail' => [

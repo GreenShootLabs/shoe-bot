@@ -2,7 +2,9 @@
 /public/hot
 /public/storage
 /storage/*.key
+/storage/statuses
 /vendor
+/vendor-local
 .env
 .phpunit.result.cache
 Homestead.json
@@ -12,6 +14,7 @@ yarn-error.log
 .idea
 /public/js/app.js
 /public/css/app.css
+/public/css/*.css
 /public/admin
 /public/fonts/vendor
 /public/vendor
@@ -23,3 +26,11 @@ auth.json
 dgraph
 xdebug.log
 .lando.yml
+.env-e
+.lando.yml-e
+tests/_dgraphdata
+build
+.DS_store
+.php_cs.cache
+composer-dev.json
+composer-dev.lock

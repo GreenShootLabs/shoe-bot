@@ -17,15 +17,33 @@ Route::middleware('auth:api')->get('/api/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['prefix' => 'admin/api', 'middleware' => 'auth:api'], function () {
-    Route::apiResource('conversation', 'API\ConversationsController');
-    Route::apiResource('webchat-setting', 'API\WebchatSettingsController', ['except' => ['store', 'destroy']]);
-    Route::apiResource('chatbot-user', 'API\ChatbotUsersController', ['except' => ['store', 'update', 'destroy']]);
-    Route::apiResource('user', 'API\UsersController');
-    Route::apiResource('outgoing-intents', 'API\OutgoingIntentsController');
-    Route::apiResource('outgoing-intents/{id}/message-templates', 'API\MessageTemplatesController');
+Route::namespace('API')->middleware(['auth:api'])->prefix('admin/api')->group(function () {
+    Route::apiResource('conversation', 'ConversationsController');
+    Route::apiResource('webchat-setting', 'WebchatSettingsController', ['except' => ['store', 'destroy']]);
+    Route::apiResource('chatbot-user', 'ChatbotUsersController', ['except' => ['store', 'update', 'destroy']]);
+    Route::apiResource('user', 'UsersController');
 
-    Route::get('conversation/{id}/publish', 'API\ConversationsController@publish');
-    Route::get('conversation/{id}/unpublish', 'API\ConversationsController@unpublish');
-    Route::get('chatbot-user/{id}/messages', 'API\ChatbotUsersController@messages');
+    Route::apiResource('outgoing-intents', 'OutgoingIntentsController');
+    Route::apiResource('outgoing-intents/{id}/message-templates', 'MessageTemplatesController');
+
+    Route::apiResource('global-context', 'GlobalContextsController');
+
+    Route::get('conversation-archive', 'ConversationsController@viewArchive');
+    Route::prefix('conversation/{id}')->group(function () {
+        Route::get('/activate', 'ConversationsController@activate');
+        Route::get('/deactivate', 'ConversationsController@deactivate');
+        Route::get('/archive', 'ConversationsController@archive');
+        Route::get('/message-templates', 'ConversationsController@messageTemplates');
+
+        Route::get('/restore/{versionId}', 'ConversationsController@restore');
+        Route::get('/reactivate/{versionId}', 'ConversationsController@reactivate');
+    });
+
+    Route::get('chatbot-user/{id}/messages', 'ChatbotUsersController@messages');
+
+    Route::get('requests', 'RequestsController@index');
+    Route::get('requests/{id}', 'RequestsController@show');
+
+    Route::get('warnings', 'WarningsController@index');
+    Route::get('warnings/{id}', 'WarningsController@show');
 });
