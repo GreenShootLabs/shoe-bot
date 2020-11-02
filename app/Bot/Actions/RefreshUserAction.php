@@ -9,7 +9,7 @@ use OpenDialogAi\ContextEngine\Facades\ContextService;
 
 class RefreshUserAction extends BaseAction
 {
-    protected $performs = 'action.shoebot.user_refresh';
+    protected static $name = 'action.shoebot.user_refresh';
 
     private static $userAttributes = [
         'experience',

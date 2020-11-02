@@ -10,7 +10,7 @@ use OpenDialogAi\ContextEngine\Facades\ContextService;
 
 class GetShoes extends BaseAction
 {
-    protected $performs = 'action.shoebot.get_shoes';
+    protected static $name = 'action.shoebot.get_shoes';
 
     private static $shoes = [
         'male' => [
