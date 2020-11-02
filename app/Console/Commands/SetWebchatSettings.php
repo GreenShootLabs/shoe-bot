@@ -53,14 +53,23 @@ class SetWebchatSettings extends Command
 
         $settings = [
             WebchatSetting::URL => "$odUrl/web-chat",
+            WebchatSetting::LOGO => "$odUrl/images/logo.png",
             WebchatSetting::OPEN => true,
             WebchatSetting::TEAM_NAME => 'Perfect Fit',
             WebchatSetting::MESSAGE_DELAY => '1000',
             WebchatSetting::COLOURS => 'colours',
-            WebchatSetting::HEADER_BACKGROUND => '#4CA5AD',
+            WebchatSetting::HEADER_BACKGROUND => '#64afb7',
+            WebchatSetting::MESSAGE_LIST_BACKGROUND => '#ffffff',
+            WebchatSetting::RECEIVED_MESSAGE_BACKGROUND => '#f2f2f2',
+            WebchatSetting::SENT_MESSAGE_BACKGROUND => '#64afb7',
+            WebchatSetting::SENT_MESSAGE_TEXT => '#ffffff',
+            WebchatSetting::BUTTON_BACKGROUND => '#64afb7',
+            WebchatSetting::BUTTON_TEXT => '#ffffff',
+            WebchatSetting::BUTTON_HOVER_BACKGROUND => '#3C8891',
             WebchatSetting::CHATBOT_AVATAR_PATH => "$odUrl/images/logo.png",
             WebchatSetting::CHATBOT_NAME => 'Perfect Fit',
-            WebchatSetting::USE_HUMAN_AVATAR => true,
+            WebchatSetting::CHATBOT_CSS_PATH => "$odUrl/css/client-custom.css",
+            WebchatSetting::USE_HUMAN_AVATAR => false,
             WebchatSetting::USE_BOT_AVATAR => true,
             WebchatSetting::COMMENTS => 'comments',
             WebchatSetting::COMMENTS_ENABLED => false,
@@ -87,6 +96,9 @@ class SetWebchatSettings extends Command
             WebchatSetting::SHOW_HISTORY => true,
             WebchatSetting::NUMBER_OF_MESSAGES => 10,
             WebchatSetting::COLLECT_USER_IP => true,
+            WebchatSetting::NEW_USER_OPEN_CALLBACK => 'WELCOME',
+            WebchatSetting::RETURNING_USER_OPEN_CALLBACK => 'WELCOME',
+            WebchatSetting::ONGOING_USER_OPEN_CALLBACK => ''
         ];
 
         foreach ($settings as $name => $value) {
