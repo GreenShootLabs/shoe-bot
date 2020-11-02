@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "07daaac863975bb2c965b36672e1daa4",
+    "content-hash": "5d7921e667042919f9a0ca52a8106138",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1967,20 +1967,20 @@
         },
         {
             "name": "opendialogai/core",
-            "version": "0.7.x-dev",
+            "version": "0.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/core.git",
-                "reference": "b810df911a6669127d14136bc7331c54099b46d6"
+                "reference": "0479b7c823505e05bed2cb7f0f53fb1aa301369e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/core/zipball/b810df911a6669127d14136bc7331c54099b46d6",
-                "reference": "b810df911a6669127d14136bc7331c54099b46d6",
+                "url": "https://api.github.com/repos/opendialogai/core/zipball/0479b7c823505e05bed2cb7f0f53fb1aa301369e",
+                "reference": "0479b7c823505e05bed2cb7f0f53fb1aa301369e",
                 "shasum": ""
             },
             "require": {
-                "doctrine/dbal": "^2.10",
+                "doctrine/dbal": "^2.11",
                 "ext-json": "*",
                 "guzzlehttp/guzzle": "~6.3",
                 "justinrainbow/json-schema": "^5.2",
@@ -2045,7 +2045,7 @@
                 "Apache-2.0"
             ],
             "description": "The OpenDialog Core package",
-            "time": "2020-09-22T15:59:07+00:00"
+            "time": "2020-10-21T10:52:15+00:00"
         },
         {
             "name": "opendialogai/dgraph-docker",
@@ -2081,16 +2081,16 @@
         },
         {
             "name": "opendialogai/webchat",
-            "version": "0.7.x-dev",
+            "version": "0.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/webchat.git",
-                "reference": "0faac26eeeeb6b334f0473acc4e12ab6fed1f2f7"
+                "reference": "a679771ec22ec6ce672568e87a09176625c83625"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/webchat/zipball/0faac26eeeeb6b334f0473acc4e12ab6fed1f2f7",
-                "reference": "0faac26eeeeb6b334f0473acc4e12ab6fed1f2f7",
+                "url": "https://api.github.com/repos/opendialogai/webchat/zipball/a679771ec22ec6ce672568e87a09176625c83625",
+                "reference": "a679771ec22ec6ce672568e87a09176625c83625",
                 "shasum": ""
             },
             "require": {
@@ -2129,7 +2129,7 @@
                 }
             ],
             "description": "Webchat front end component for the Open Dialog project",
-            "time": "2020-09-15T15:36:53+00:00"
+            "time": "2020-10-14T10:28:44+00:00"
         },
         {
             "name": "opis/closure",
@@ -5580,9 +5580,9 @@
             "authors": [
                 {
                     "name": "Marcel Pociot",
+                    "role": "Developer",
                     "email": "marcel@beyondco.de",
-                    "homepage": "https://beyondco.de",
-                    "role": "Developer"
+                    "homepage": "https://beyondco.de"
                 }
             ],
             "description": "Symfony Var-Dump Server for Laravel",
@@ -8435,10 +8435,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "opendialogai/core": 20,
-        "opendialogai/webchat": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
