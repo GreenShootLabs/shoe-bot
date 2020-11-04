@@ -8,8 +8,6 @@ return [
      * Where ClassName is an implementation of @see \OpenDialogAi\ActionEngine\Actions\ActionInterface
      */
     'custom_actions' => [
-        \App\Bot\Actions\RefreshUserAction::class,
-        \App\Bot\Actions\GetRunnerExperienceAction::class,
-        \App\Bot\Actions\GetShoes::class
+        \App\Bot\Actions\TrackProgressAction::class
     ],
 ];
