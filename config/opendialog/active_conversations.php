@@ -15,7 +15,6 @@ return [
     'recommendation_conversation',
     'purchase_conversation',
     'personal_information_conversation',
-    'provide_contact_information_conversation',
     'payment_request_conversation',
     'feedback_conversation',
 ];
