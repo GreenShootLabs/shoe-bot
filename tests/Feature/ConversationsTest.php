@@ -5,6 +5,8 @@ namespace Tests\Feature;
 use App\User;
 use Illuminate\Support\Str;
 use OpenDialogAi\ConversationBuilder\Conversation;
+use OpenDialogAi\ResponseEngine\MessageTemplate;
+use OpenDialogAi\ResponseEngine\OutgoingIntent;
 use Tests\TestCase;
 
 class ConversationsTest extends TestCase
@@ -136,7 +138,11 @@ class ConversationsTest extends TestCase
 
     public function testConversationsDestroyEndpoint()
     {
+        /** @var Conversation $firstConversation */
         $conversation = Conversation::first();
+        $conversation->activateConversation();
+        $conversation->deactivateConversation();
+        $conversation->archiveConversation();
 
         $this->actingAs($this->user, 'api')
             ->json('DELETE', '/admin/api/conversation/' . $conversation->id)
@@ -145,35 +151,102 @@ class ConversationsTest extends TestCase
         $this->assertEquals(Conversation::find($conversation->id), null);
     }
 
-    public function testConversationsPublishEndpoint()
+    public function testConversationsActivateEndpoint()
     {
         $conversation = Conversation::first();
 
         $response = $this->actingAs($this->user, 'api')
-            ->json('GET', '/admin/api/conversation/' . $conversation->id . '/publish')
+            ->json('GET', '/admin/api/conversation/' . $conversation->id . '/activate')
             ->assertStatus(200);
 
         $this->assertEquals($response->content(), 'true');
     }
 
-    public function testConversationsUnpublishEndpoint()
+    public function testConversationsDeactivateEndpoint()
     {
         $conversation = Conversation::first();
 
-        $conversation->publishConversation($conversation->buildConversation());
+        $conversation->activateConversation();
 
         $response = $this->actingAs($this->user, 'api')
-            ->json('GET', '/admin/api/conversation/' . $conversation->id . '/unpublish')
+            ->json('GET', '/admin/api/conversation/' . $conversation->id . '/deactivate')
             ->assertStatus(200);
 
         $this->assertEquals($response->content(), 'true');
+    }
+
+    public function testConversationsArchiveEndpoint()
+    {
+        $conversation = Conversation::first();
+
+        $conversation->activateConversation();
+        $conversation->deactivateConversation();
+
+        $this->actingAs($this->user, 'api')
+            ->json('GET', '/admin/api/conversation/' . $conversation->id . '/archive')
+            ->assertStatus(200);
+    }
+
+    public function testConversationsMessageTemplatesEndpoint()
+    {
+        $conversation1 = Conversation::all()->get(1);
+        $conversation2 = Conversation::all()->get(2);
+
+        $intent1 = $conversation1->outgoing_intents[0]['name'];
+        $intent2 = $conversation2->outgoing_intents[0]['name'];
+
+        $outgoingIntent1 = OutgoingIntent::create([
+            'name' => $intent1,
+        ]);
+        $outgoingIntent2 = OutgoingIntent::create([
+            'name' => $intent2,
+        ]);
+
+        for ($j = 0; $j < 5; $j++) {
+            $messageTemplate = factory(MessageTemplate::class)->make();
+            $messageTemplate->outgoing_intent_id = $outgoingIntent1->id;
+            $messageTemplate->save();
+        }
+
+        for ($j = 0; $j < 3; $j++) {
+            $messageTemplate = factory(MessageTemplate::class)->make();
+            $messageTemplate->outgoing_intent_id = $outgoingIntent2->id;
+            $messageTemplate->save();
+        }
+
+        $response = $this->actingAs($this->user, 'api')
+            ->json('GET', '/admin/api/conversation/' . $conversation1->id . '/message-templates')
+            ->assertStatus(200);
+        $content = json_decode($response->content());
+        $data = $content->data;
+
+        $this->assertEquals(count($data), 5);
+        foreach ($data as $message) {
+            $this->assertEquals(!empty($message->id), true);
+            $this->assertEquals(!empty($message->outgoing_intent), true);
+            $this->assertEquals($message->outgoing_intent_id, $outgoingIntent1->id);
+            $this->assertEquals($message->outgoing_intent->name, $intent1);
+        }
+
+        $response = $this->actingAs($this->user, 'api')
+            ->json('GET', '/admin/api/conversation/' . $conversation2->id . '/message-templates')
+            ->assertStatus(200);
+        $content = json_decode($response->content());
+        $data = $content->data;
+
+        $this->assertEquals(count($data), 3);
+        foreach ($data as $message) {
+            $this->assertEquals(!empty($message->id), true);
+            $this->assertEquals(!empty($message->outgoing_intent), true);
+            $this->assertEquals($message->outgoing_intent_id, $outgoingIntent2->id);
+            $this->assertEquals($message->outgoing_intent->name, $intent2);
+        }
     }
 
     public function testConversationsInvalidStoreEndpoint()
     {
         $response = $this->actingAs($this->user, 'api')
             ->json('POST', '/admin/api/conversation', [
-                'name' => 'test_conversation',
                 'model' => 'conversation:
   id: test_conversation',
             ])
@@ -183,9 +256,8 @@ class ConversationsTest extends TestCase
 
         $response = $this->actingAs($this->user, 'api')
             ->json('POST', '/admin/api/conversation', [
-                'name' => 'test',
                 'model' => 'conversation:
-  id: test_conversation
+  id: ' . Str::random(1000) . '
   scenes:
     opening_scene:
       intents:
@@ -197,37 +269,6 @@ class ConversationsTest extends TestCase
             ])
             ->assertStatus(400);
 
-        $this->assertEquals($response->content(), '{"field":"name","message":"Conversation name must be the same of model conversation id."}');
-
-        $response = $this->actingAs($this->user, 'api')
-            ->json('POST', '/admin/api/conversation', [
-                'name' => Str::random(1000),
-                'model' => 'conversation:
-  id: test_conversation
-  scenes:
-    opening_scene:
-      intents:
-        - u: 
-            i: intent.core.hello_bot
-        - b: 
-            i: intent.core.hello_human
-            completes: true',
-            ])
-            ->assertStatus(400);
-
-        $this->assertEquals($response->content(), '{"field":"name","message":"The maximum length for conversation name is 512."}');
-    }
-
-    public function testConversationsInvalidUpdateEndpoint()
-    {
-        $conversation = Conversation::first();
-
-        $response = $this->actingAs($this->user, 'api')
-            ->json('PATCH', '/admin/api/conversation/' . $conversation->id, [
-                'name' => 'updated_name',
-            ])
-            ->assertStatus(400);
-
-        $this->assertEquals($response->content(), '{"field":"name","message":"Conversation name must be the same of model conversation id."}');
+        $this->assertEquals($response->content(), '{"field":"name","message":"The maximum length for conversation id is 512."}');
     }
 }

@@ -1,147 +1,62 @@
 
 [![CircleCI](https://circleci.com/gh/opendialogai/opendialog/tree/master.svg?style=svg&circle-token=aefbfc509382266413d6667a1aef451c7bf82f22)](https://circleci.com/gh/opendialogai/opendialog/tree/master)
 
-# Shoe Bot - 0.0.1
+# Shoe Bot 1.0.0
 This is a sample application that pulls in the [Open Dialog core](https://github.com/opendialogai/core) and [Open Dialog Webchat](https://github.com/opendialogai/webchat/) packages and provides a demonstration of the OpenDialog platform with webchat. 
 
+OpenDialog enables you to quickly build conversational applications. 
 
-# Set Up Instructions
+It provides a web widget that can be styled to specific needs and can be embedded on any website. 
 
-## Quickstart
-This will get you up and running with minimal manual configuration.
+You write conversational applications using OpenDialog's flexible conversational language, and define the messages that your bot will send the user through OpenDialog's message markup language. 
 
-* [Install](https://docs.devwithlando.io/installation/system-requirements.html) [lando](https://github.com/lando/lando)
- -- Lando is a wrapper around Docker services and it brings together everything that is required for OpenDialog.
- 
-* Run the setup script: `bash ./scripts/set_up_od.sh {appname}` where {appname} is the name of the app
-* Now you can go to: https://opendialog.lndo.site/demo
-* You should see the no-match message 
-* The DGraph browser will be available here: http://dgraph-ratel.lndo.site/?latest
-  * DGraph Alpha should be available at locahost:8081
+For all the details of how OpenDialog helps you build sophisticated chatbots visit our [documentation site](https://docs.opendialog.ai).
 
-## Manual Configuration
+# Trying out OpenDialog
 
-### Front end set up
+If you want to see OpenDialog in action you can try out the latest version through our automatically produced Docker image. 
 
-After running `composer install` or `composer update`, an update script file should be moved to the root of your project
-directory. Run this script to set up the OpenDialogAI-Webchat and OpenDialogAI-Core packages with
+As long as you have Docker installed on your local machine you can do:
+- `cd docker/od-demo`
+- `docker-compose up -d app`
+- `docker-compose exec app bash docker/od-demo/update-docker.sh`
 
-```bash update-web-chat.sh -i```
+You can then visit http://localhost and login to OpenDialog with admin@example.com / opendialog
 
-#### Options
+# Learning about OpenDialog
 
-The following options are available on the script:
+To find out more about how OpenDialog works and a guide to building your first conversational application with OpenDialog visit our [docs website](https://docs.opendialog.ai). 
 
-+ `-h` Get help
-+ `-p` Set if this is to be run in the production environment
-+ `-l` Set if you are using Lando for local development. Will run the commands from within Lando
-+ `-i` Set if you need to install the node dependencies. This defaults to false, so you should always set this for the fist run
-+ `-f` Whether to force updating by deleting local dependencies. If set, will remove the vue-beautiful-chat node module before reinstalling 
+# Developing with OpenDialog
 
-Run this script every time an underlying package is updated.
+To setup a development environment for OpenDialog please check out the [OpenDialog development environment repository](https://github.com/opendialogai/opendialog-dev-environment) - it provides step by step instructions for setting up a Docker-based dev environment.  
 
-#### Webchat Configuration 
+# Session Management
 
-The webchat configuration can be found in the `webchat_settings` table. The config table should be seeded by running:
+Use sessions are handled by the standard Laravel session management systems (as defined in your `.env` file). By default, this is set to `file` which will only work as expected when there is a single OpenDialog app server.
+When there are multiple app servers behind a load balancer, switch to using `redis` or `database` as your session management tool.
+More info can be found in the [Laravel Session docs](https://laravel.com/docs/7.x/session)
 
-```php artisan webchat:setup```
+# Continuous Integration
 
-This will set up the `webchat_settings` table with all the requried values.
-For this to work successfully, the `APP_URL` environment variable need to be set
+This project comes with a [CircleCI](http://www.circleci.com) (config.yml) file that sets up a basic workflow for the app that:
++ Runs all phpunit tests and stores the code coverage result
++ Attempts to install and build the project's Node dependencies
++ If all of these pass, builds a docker image and sends to docker hub.
 
-### DGraph configuration
+For this to run successfully, you will need to set up CircleCI to watch the project in GitHub and add the following environment variables:
 
-#### Running DGraph
++ `DOCKER_BUILD` - `true`|`false`
++ `DOCKER_USER` - your Docker username
++ `DOCKER_PASS` - your Docker password
++ `DOCKER_PROJECT_NAME` - the full project name in DockerHub (eg `opendialogai/opendialog`)
 
-If you don't have a `dgraph` directory in the root of your project, run
+## Docker tag names
 
-```php artisan vendor:publish --tag=dgraph```
+By default, the `scripts/docker-build.sh` script will use either the current branch name, or the tag name if there is one associated with the current commit.
+Branch names will have `/` replaced with `_` to meet Docker naming convention.
 
-to copy it over from the OpenDialogAi-Core package.
+## GitHub Token during docker build
 
-Now follow the instructions found in `dgraph-setup.md`
-
-#### Config
-
-Publish the opendialog config by running:
-
-```php artisan vendor:publish --tag=opendialog-config```
-
-This will copy over all required config files to `config/opendialog` for you to add you own values
-
-Add (and edit as necessary) the following lines to your .env file to let OD know where to find your DGraph installation:
-```
-DGRAPH_URL=http://10.0.2.2
-DGRAPH_PORT=8080
-```
-
-These settings should work out of the box if you are using Laravel Homestead. More info in `draph/dgraph-setup.md`
-
-## Conversations
-
-Conversations in OpenDialog are managed in the mysql database, and published to DGraph when they are ready to be used.
-
-There are 2 scripts included with this application that allow you to import and export conversations that can be checked into 
-the repo and shared
-
-### Configuration
-
-There is a config file `opendialog/active_conversations.php` in the config directory. This contains a list of all conversation
-names that should be exported / imported. This list is used by both scripts and should be kept up to date with your local conversations.
-Just the conversation name is needed.
-
-### Import Conversations
-
-To import all conversations, run
-
-```php artisan conversations:setup```
-
-This will import all conversations that are listed in `opendialog/active_conversations.php` and exist in `resources/conversartions`
-
-#### Example Conversations
-
-By default, the welcome and no match conversations are included with OpenDialog. Running the script will create a no match
-and a welcome conversation (but without the required messages)
-
-### Exporting Conversations
-
-Run:
-
-```php artisan conversations:export```
-
-To export all conversations in the `opendialog/active_conversations.php` config file. This will dump the current conversation
-YAML and all related outgoing intents and message templates
-
-## Local dev
-
-A `composer-dev.json` file has been created to help with local development. It makes the assumption that you have the 
-Open Dialog and Open Dialog Webchat packages checked out locally to `../OpenDialog` and `../OpenDialog-Webchat`
-respectively.
-
-To install dependencies using it, you can run `./composer-dev install` or `./composer-dev update`
-
-After doing so, you may need to run `php artisan package:discover` to pick up any new modules.
-
-Note:
-
-+ Any changes made in `composer-dev.json` must be reflected in `composer.json` and vice versa
-+ Before a final commit for a feature / fix, please be sure to run `composer update` to update the `composer-lock.json`
-file so that it can be tested and deployed with all composer changes in place
-
-## Running Code Sniffer
-To run code sniffer, run the following command
-```./vendor/bin/phpcs --standard=psr12 app/ -n```
-
-## Git Hooks
-
-To set up the included git pre-commit hook, first make sure the pre-commit script is executable by running
-
-```chmod +x .githooks/pre-commit```
-
-Then configure your local git to use this directory for git hooks by running:
-
-```git config core.hooksPath .githooks/```
-
-Now every commit you make will trigger php codesniffer to run. If there is a problem with the formatting
-of the code, the script will echo the output of php codesniffer. If there are no issues, the commit will
-go into git.
+If you OpenDialog project has a composer dependency on a private GitHub repo, a local auth.json file can be created and used during the docker build.
+To do this, just add a value for the environment variable `GITHUB_TOKEN` in CircleCI 

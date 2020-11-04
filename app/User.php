@@ -7,9 +7,17 @@ use Illuminate\Notifications\Notifiable;
 use Srmklive\Authy\Auth\TwoFactor\Authenticatable as TwoFactorAuthenticatable;
 use Srmklive\Authy\Contracts\Auth\TwoFactor\Authenticatable as TwoFactorAuthenticatableContract;
 
+/**
+ * @property string email
+ * @property string name
+ * @property string password
+ * @property string phone_number
+ * @property string phone_country_code
+ */
 class User extends Authenticatable implements TwoFactorAuthenticatableContract
 {
-    use Notifiable, TwoFactorAuthenticatable;
+    use Notifiable;
+    use TwoFactorAuthenticatable;
 
     /**
      * The attributes that are mass assignable.
