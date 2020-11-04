@@ -18,9 +18,14 @@ abstract class AbstractMainInterpreter extends BaseInterpreter
 
     private array $map = [
         0 => 'welcome_conversation',
-        1 => 'question_one_conversation',
-        2 => 'question_two_conversation',
-        3 => 'question_three_conversation',
+        1 => 'get_runner_experience_conversation',
+        2 => 'provide_runner_experience_conversation',
+        3 => 'work_out_pronation_conversation',
+        4 => 'recommendation_conversation',
+        5 => 'purchase_conversation',
+        6 => 'personal_information_conversation',
+        7 => 'payment_request_conversation',
+        8 => 'feedback_conversation',
     ];
 
     /**

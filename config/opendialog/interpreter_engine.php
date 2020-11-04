@@ -10,6 +10,11 @@ return [
         \App\Bot\Interpreters\MainInterpreters\MainInterpreterOne::class,
         \App\Bot\Interpreters\MainInterpreters\MainInterpreterTwo::class,
         \App\Bot\Interpreters\MainInterpreters\MainInterpreterThree::class,
+        \App\Bot\Interpreters\MainInterpreters\MainInterpreterFour::class,
+        \App\Bot\Interpreters\MainInterpreters\MainInterpreterFive::class,
+        \App\Bot\Interpreters\MainInterpreters\MainInterpreterSix::class,
+        \App\Bot\Interpreters\MainInterpreters\MainInterpreterSeven::class,
+        \App\Bot\Interpreters\MainInterpreters\MainInterpreterEight::class,
     ],
 
     'default_interpreter' => 'interpreter.core.callbackInterpreter',

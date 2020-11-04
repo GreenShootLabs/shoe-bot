@@ -9,7 +9,13 @@
 return [
     'welcome_conversation',
     'no_match_conversation',
-    'question_one_conversation',
-    'question_two_conversation',
-    'question_three_conversation',
+    'get_runner_experience_conversation',
+    'provide_runner_experience_conversation',
+    'work_out_pronation_conversation',
+    'recommendation_conversation',
+    'purchase_conversation',
+    'personal_information_conversation',
+    'provide_contact_information_conversation',
+    'payment_request_conversation',
+    'feedback_conversation',
 ];
