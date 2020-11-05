@@ -107,7 +107,7 @@ class DialogflowClient extends AbstractNLUCustomClient
         $sessionId = ContextService::getUserContext()->getUserId() ?: uniqid();
 
         $client = new \GuzzleHttp\Client();
-        $response = $client->get($projectId, [
+        $response = $client->post($projectId, [
             'headers' => [
                 'Content-Type' => 'application/json'
             ],
