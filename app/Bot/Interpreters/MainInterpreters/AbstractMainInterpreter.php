@@ -33,6 +33,7 @@ abstract class AbstractMainInterpreter extends CallbackInterpreter
     private $intentsToIgnore = [
          NoMatchIntent::NO_MATCH,
         'intent.shoebot.promptQuestion',
+        'intent.app.end_chat'
     ];
 
     /**

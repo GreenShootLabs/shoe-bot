@@ -7,7 +7,7 @@ use OpenDialogAi\ActionEngine\Actions\ActionResult;
 use OpenDialogAi\ActionEngine\Actions\BaseAction;
 use OpenDialogAi\ContextEngine\Facades\AttributeResolver;
 
-class GetSelectionName extends BaseAction
+class GetSelectionNameAction extends BaseAction
 {
     protected static $name = 'action.shoebot.getSelectioName';
 
