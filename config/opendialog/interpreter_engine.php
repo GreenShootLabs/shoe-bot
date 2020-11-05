@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'default_cache_time' => 0,
+
     'dialogflow_config' => [
         'faq' => [
             'project_id' => env('DIALOGFLOW_FAQ_PROJECT_ID')
