@@ -114,9 +114,13 @@ abstract class AbstractMainInterpreter extends CallbackInterpreter
 
                         /** @var AbstractNLUEntity $entity */
                         foreach ($response->getEntities() as $entity) {
-                            $intent->addAttribute(
-                                AttributeResolver::getAttributeFor($entity->getType(), $entity->getResolutionValues()[0])
-                            );
+                            $value = $entity->getResolutionValues()[0];
+
+                            if ($value != "") {
+                                $intent->addAttribute(
+                                    AttributeResolver::getAttributeFor($entity->getType(), $value)
+                                );
+                            }
                         }
 
                         return [$intent];
