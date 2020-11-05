@@ -21,6 +21,7 @@ yarn-error.log
 /public/images/vendor
 /resources/assets/opendialog
 /resources/views/vendor/pingpong
+/resources/credentials/*
 update-web-chat.sh
 auth.json
 dgraph

@@ -2,11 +2,9 @@
 
 namespace App\Bot\Actions;
 
-use Ds\Map;
 use OpenDialogAi\ActionEngine\Actions\ActionInput;
 use OpenDialogAi\ActionEngine\Actions\ActionResult;
 use OpenDialogAi\ActionEngine\Actions\BaseAction;
-use OpenDialogAi\ActionEngine\Service\ActionEngineInterface;
 use OpenDialogAi\ContextEngine\Facades\AttributeResolver;
 
 class GetShoesAction extends BaseAction
@@ -19,6 +17,7 @@ class GetShoesAction extends BaseAction
     ];
 
     protected $outputAttributes = [
+        'last_conversation',
         'shoe_1_img',
         'shoe_1_desc',
         'shoe_2_img',
@@ -27,7 +26,7 @@ class GetShoesAction extends BaseAction
         'shoe_3_desc',
     ];
 
-    private static $shoes = [
+    public static $shoes = [
         'male' => [
             1 => [
                 '/bot/images/mens_1.jpg',
@@ -61,16 +60,15 @@ class GetShoesAction extends BaseAction
 
     public function perform(ActionInput $actionInput): ActionResult
     {
-        resolve(ActionEngineInterface::class)->performAction(
-            TrackProgressAction::getName(),
-            new Map([
+        $trackingResult = (new TrackProgressAction())->perform(
+            (new ActionInput())->addAttribute(
                 $actionInput->getAttributeBag()->getAttribute('current_conversation')
-            ])
+            )
         );
 
         $gender = $actionInput->getAttributeBag()->getAttributeValue('gender');
 
-        $attributes = [];
+        $attributes = array_values($trackingResult->getResultAttributes()->getAttributes()->toArray());
 
         for ($i = 1; $i < 4; $i++) {
             $attributes[] = AttributeResolver::getAttributeFor("shoe_{$i}_img", self::$shoes[$gender][$i][0]);

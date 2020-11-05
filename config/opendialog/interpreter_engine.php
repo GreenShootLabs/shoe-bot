@@ -1,11 +1,24 @@
 <?php
 
 return [
+    'dialogflow_config' => [
+        'faq' => [
+            'project_id' => env('DIALOGFLOW_FAQ_PROJECT_ID')
+        ],
+        'main' => [
+            'project_id' => env('DIALOGFLOW_MAIN_PROJECT_ID')
+        ],
+        'credentials' => [
+            '_fallback' => env('DIALOGFLOW_FALLBACK_CREDENTIALS_PATH')
+        ]
+    ],
+
     /**
      * Custom interpreters registered in the format
      */
     'custom_interpreters' => [
         \App\Bot\Interpreters\FaqInterpreter::class,
+        \App\Bot\Interpreters\FeedbackInterpreter::class,
         \App\Bot\Interpreters\MainInterpreters\MainInterpreterWelcome::class,
         \App\Bot\Interpreters\MainInterpreters\MainInterpreterOne::class,
         \App\Bot\Interpreters\MainInterpreters\MainInterpreterTwo::class,

@@ -12,6 +12,8 @@ return [
         'last_conversation' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
         'is_resuming' => \OpenDialogAi\Core\Attribute\BooleanAttribute::class,
 
+        'dialogflow_message' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
+
         'experience' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
         'surface' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
         'sturdiness' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
@@ -28,8 +30,11 @@ return [
         'shoe_3_desc' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
 
         'selection' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
+        'selection_name' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
 
+        'title' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
         'first_name' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
+        'last_name' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
         'street' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
         'city' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
         'post_code' => \OpenDialogAi\Core\Attribute\StringAttribute::class,

@@ -3,12 +3,12 @@
 
 namespace App\Bot\Interpreters;
 
-use OpenDialogAi\Core\Conversation\Intent;
+use App\Bot\Dialogflow\DialogflowClient;
+use Illuminate\Support\Facades\Log;
 use OpenDialogAi\Core\Utterances\UtteranceInterface;
-use OpenDialogAi\InterpreterEngine\BaseInterpreter;
 use OpenDialogAi\InterpreterEngine\Interpreters\NoMatchIntent;
 
-class FaqInterpreter extends BaseInterpreter
+class FaqInterpreter extends AbstractDialogflowInterpreter
 {
     protected static $name = 'interpreter.shoebot.faq';
 
@@ -17,15 +17,16 @@ class FaqInterpreter extends BaseInterpreter
         $text = $utterance->getText();
 
         if ($utterance->getCallbackId() == NoMatchIntent::NO_MATCH) {
-            if (str_contains(strtolower($text), 'faq')) {
-                $intent = Intent::createIntentWithConfidence('intent.app.dialogflow', 1);
+            if (!is_null($text) && $text != '') {
+                Log::debug(sprintf('%s: received text and is querying Dialogflow', self::getName()));
+                $client = resolve(DialogflowClient::class);
+                $client->setDefaultProjectId(config('opendialog.interpreter_engine.dialogflow_config.faq.project_id'));
+                return self::interpretWithClient($utterance, $client);
             } else {
-                $intent = Intent::createIntentWithConfidence('intent.app.dialogflowNoMatch', 1);
+                return [new NoMatchIntent()];
             }
         } else {
             return [];
         }
-
-        return [$intent];
     }
 }

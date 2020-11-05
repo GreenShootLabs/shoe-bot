@@ -5,8 +5,10 @@
     "license": "Apache-2.0",
     "require": {
         "php": "^7.4",
+        "ext-json": "*",
         "doctrine/dbal": "^2.9",
         "fideloper/proxy": "^4.2",
+        "google/cloud": "^0.142.0",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
         "opendialogai/core": "0.7.3",

@@ -2,8 +2,9 @@
 
 namespace App\Providers;
 
-use App\User;
+use App\Bot\Dialogflow\DialogflowClient;
 use App\Observers\UserObserver;
+use App\User;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -15,7 +16,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(DialogflowClient::class, function () {
+            return new DialogflowClient([
+                'language_code' => 'en-GB',
+                'environment' => 'draft'
+            ]);
+        });
     }
 
     /**

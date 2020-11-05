@@ -9,6 +9,7 @@
 return [
     'welcome_conversation',
     'no_match_conversation',
+    'end_chat_conversation',
     'get_runner_experience_conversation',
     'provide_runner_experience_conversation',
     'work_out_pronation_conversation',

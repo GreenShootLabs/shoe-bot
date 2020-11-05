@@ -3,16 +3,18 @@
 
 namespace App\Bot\Interpreters\MainInterpreters;
 
+use App\Bot\Dialogflow\DialogflowClient;
 use Illuminate\Support\Facades\Log;
 use OpenDialogAi\ContextEngine\Facades\AttributeResolver;
 use OpenDialogAi\ContextEngine\Facades\ContextService;
 use OpenDialogAi\Core\Conversation\Intent;
-use OpenDialogAi\Core\Utterances\TextUtterance;
 use OpenDialogAi\Core\Utterances\UtteranceInterface;
-use OpenDialogAi\InterpreterEngine\BaseInterpreter;
+use OpenDialogAi\InterpreterEngine\Interpreters\AbstractNLUInterpreter\AbstractNLUEntity;
+use OpenDialogAi\InterpreterEngine\Interpreters\AbstractNLUInterpreter\AbstractNLURequestFailedException;
+use OpenDialogAi\InterpreterEngine\Interpreters\CallbackInterpreter;
 use OpenDialogAi\InterpreterEngine\Interpreters\NoMatchIntent;
 
-abstract class AbstractMainInterpreter extends BaseInterpreter
+abstract class AbstractMainInterpreter extends CallbackInterpreter
 {
     protected static int $interpreterNumber = -1;
 
@@ -26,6 +28,11 @@ abstract class AbstractMainInterpreter extends BaseInterpreter
         6 => 'personal_information_conversation',
         7 => 'payment_request_conversation',
         8 => 'feedback_conversation',
+    ];
+
+    private $intentsToIgnore = [
+         NoMatchIntent::NO_MATCH,
+        'intent.shoebot.promptQuestion',
     ];
 
     /**
@@ -75,11 +82,50 @@ abstract class AbstractMainInterpreter extends BaseInterpreter
             ));
 
             if ($relevantConversationContinuous == $lastConversation
-             && (($utterance->getCallbackId() != '' && $utterance->getCallbackId() != 'WELCOME')
-                    || in_array(trim(strtolower($utterance->getText())), ['y', 'n']))) {
-                $intent = Intent::createIntentWithConfidence('intent.shoebot.resume', 1);
-                $intent->addAttribute(AttributeResolver::getAttributeFor('is_resuming', false));
-                return [$intent];
+                && !in_array($utterance->getCallbackId(), $this->intentsToIgnore)) {
+                if ($utterance->getCallbackId() != '' && $utterance->getCallbackId() != 'WELCOME') {
+                    $intent = Intent::createIntentWithConfidence('intent.shoebot.resume', 1);
+                    $intent->addAttribute(AttributeResolver::getAttributeFor('is_resuming', false));
+
+                    $this->setValue($utterance, $intent);
+                    $this->setFormValues($utterance, $intent);
+
+                    return [$intent];
+                } elseif ($utterance->getText()) {
+                    $client = resolve(DialogflowClient::class);
+                    $client->setDefaultProjectId(config('opendialog.interpreter_engine.dialogflow_config.main.project_id'));
+                    try {
+                        $response = $client->query($utterance->getText());
+                    } catch (AbstractNLURequestFailedException $e) {
+                        Log::warning("Client call failed with a non 200 response, please check the logs");
+                        return [];
+                    }
+
+                    Log::debug(sprintf(
+                        '%s [continuous] (Dialogflow) expected %s and got %s.',
+                        static::$name,
+                        $relevantConversationContinuous,
+                        $response->getTopScoringIntent()->getLabel()
+                    ));
+
+                    if ($relevantConversationContinuous == $response->getTopScoringIntent()->getLabel()) {
+                        $intent = Intent::createIntentWithConfidence('intent.shoebot.resume', 1);
+                        $intent->addAttribute(AttributeResolver::getAttributeFor('is_resuming', false));
+
+                        /** @var AbstractNLUEntity $entity */
+                        foreach ($response->getEntities() as $entity) {
+                            $intent->addAttribute(
+                                AttributeResolver::getAttributeFor($entity->getType(), $entity->getResolutionValues()[0])
+                            );
+                        }
+
+                        return [$intent];
+                    } else {
+                        return [];
+                    }
+                } else {
+                    return [];
+                }
             } else {
                 return [];
             }

@@ -98,7 +98,7 @@ class SetWebchatSettings extends Command
             WebchatSetting::COLLECT_USER_IP => true,
             WebchatSetting::NEW_USER_OPEN_CALLBACK => 'WELCOME',
             WebchatSetting::RETURNING_USER_OPEN_CALLBACK => 'WELCOME',
-            WebchatSetting::ONGOING_USER_OPEN_CALLBACK => ''
+            WebchatSetting::ONGOING_USER_OPEN_CALLBACK => null,
         ];
 
         foreach ($settings as $name => $value) {

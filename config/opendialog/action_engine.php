@@ -10,5 +10,6 @@ return [
     'custom_actions' => [
         \App\Bot\Actions\TrackProgressAction::class,
         \App\Bot\Actions\GetShoesAction::class,
+        \App\Bot\Actions\GetSelectionName::class,
     ],
 ];
