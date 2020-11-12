@@ -18,11 +18,14 @@ class ClearRunnerInfoAction extends BaseAction
             'gender',
             'frequency',
             'pronation',
+            'last_conversation'
         ];
 
         foreach ($attributesToRemove as $attributeName) {
             ContextService::getUserContext()->addAttribute(AttributeResolver::getAttributeFor($attributeName, null));
         }
+
+        ContextService::getUserContext()->persist();
 
         return ActionResult::createSuccessfulActionResultWithAttributes([]);
     }
