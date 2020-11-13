@@ -92,3 +92,7 @@
     background: none;
     text-decoration: underline;
 }
+
+.od-message-rich.mt .od-message-rich--image img {
+    object-fit: contain;
+}

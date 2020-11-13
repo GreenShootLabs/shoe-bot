@@ -97,7 +97,7 @@ class SetWebchatSettings extends Command
             WebchatSetting::NUMBER_OF_MESSAGES => 10,
             WebchatSetting::COLLECT_USER_IP => true,
             WebchatSetting::NEW_USER_OPEN_CALLBACK => 'WELCOME',
-            WebchatSetting::RETURNING_USER_OPEN_CALLBACK => 'intent.shoebot.resume',
+            WebchatSetting::RETURNING_USER_OPEN_CALLBACK => null,
             WebchatSetting::ONGOING_USER_OPEN_CALLBACK => null,
         ];
 
