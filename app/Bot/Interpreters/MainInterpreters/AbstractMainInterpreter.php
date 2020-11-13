@@ -71,6 +71,10 @@ abstract class AbstractMainInterpreter extends CallbackInterpreter
                 $intent = Intent::createIntentWithConfidence('intent.shoebot.resume', 1);
                 $intent->addAttribute(AttributeResolver::getAttributeFor('is_resuming', true));
                 return [$intent];
+            } elseif ($relevantConversationAfterFaq == 'welcome_conversation' && $lastConversation == '') {
+                $intent = Intent::createIntentWithConfidence('intent.shoebot.resume', 1);
+                $intent->addAttribute(AttributeResolver::getAttributeFor('is_resuming', false));
+                return [$intent];
             } else {
                 return [];
             }

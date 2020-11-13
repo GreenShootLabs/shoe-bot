@@ -18,6 +18,7 @@ return [
         'surface' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
         'sturdiness' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
         'gender' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
+        'size' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
         'distance' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
         'frequency' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
         'pronation' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
