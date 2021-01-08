@@ -22,7 +22,7 @@ class MainInterpreter extends CallbackInterpreter
         'no_match_conversation'
     ];
 
-    private $intentsToIgnore = [
+    const INTENTS_TO_IGNORE = [
          NoMatchIntent::NO_MATCH,
         'intent.shoebot.promptQuestion',
         'intent.app.end_chat'
@@ -43,7 +43,7 @@ class MainInterpreter extends CallbackInterpreter
 
             return [$intent];
         } else {
-            if (!in_array($utterance->getCallbackId(), $this->intentsToIgnore)) {
+            if (!in_array($utterance->getCallbackId(), self::INTENTS_TO_IGNORE)) {
                 if ($utterance->getCallbackId() != '') {
                     $intent = Intent::createIntentWithConfidence('intent.shoebot.resume', 1);
                     $intent->addAttribute(AttributeResolver::getAttributeFor('is_resuming', false));
