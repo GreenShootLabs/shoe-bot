@@ -18,6 +18,10 @@ class MainInterpreter extends CallbackInterpreter
 {
     protected static $name = 'interpreter.shoebot.main';
 
+    const RESUMING_CONVERSATIONS = [
+        'no_match_conversation'
+    ];
+
     private $intentsToIgnore = [
          NoMatchIntent::NO_MATCH,
         'intent.shoebot.promptQuestion',
@@ -31,7 +35,7 @@ class MainInterpreter extends CallbackInterpreter
         if ($utterance->getCallbackId() == 'intent.shoebot.resume') {
             $intent = Intent::createIntentWithConfidence('intent.shoebot.resume', 1);
 
-            if ($currentConversation == 'no_match_conversation') {
+            if (in_array($currentConversation, self::RESUMING_CONVERSATIONS)) {
                 $intent->addAttribute(AttributeResolver::getAttributeFor('is_resuming', true));
             } else {
                 $intent->addAttribute(AttributeResolver::getAttributeFor('is_resuming', false));
