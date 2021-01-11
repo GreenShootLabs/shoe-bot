@@ -31,9 +31,11 @@ class MainInterpreter extends CallbackInterpreter
     public function interpret(UtteranceInterface $utterance): array
     {
         $currentConversation = ContextService::getConversationContext()->getAttributeValue('current_conversation');
+        $isFreePronationRequest = ContextService::getUserContext()->getAttributeValue('is_free_pronation_request');
 
         if ($utterance->getCallbackId() == 'intent.shoebot.resume') {
             $intent = Intent::createIntentWithConfidence('intent.shoebot.resume', 1);
+            $intent->addAttribute(AttributeResolver::getAttributeFor('is_free_pronation_request', false));
 
             if (in_array($currentConversation, self::RESUMING_CONVERSATIONS)) {
                 $intent->addAttribute(AttributeResolver::getAttributeFor('is_resuming', true));
@@ -46,7 +48,13 @@ class MainInterpreter extends CallbackInterpreter
             if (!in_array($utterance->getCallbackId(), self::INTENTS_TO_IGNORE)) {
                 if ($utterance->getCallbackId() != '') {
                     $intent = Intent::createIntentWithConfidence('intent.shoebot.resume', 1);
-                    $intent->addAttribute(AttributeResolver::getAttributeFor('is_resuming', false));
+                    $intent->addAttribute(AttributeResolver::getAttributeFor('is_free_pronation_request', false));
+
+                    if ($isFreePronationRequest) {
+                        $intent->addAttribute(AttributeResolver::getAttributeFor('is_resuming', true));
+                    } else {
+                        $intent->addAttribute(AttributeResolver::getAttributeFor('is_resuming', false));
+                    }
 
                     $this->setValue($utterance, $intent);
                     $this->setFormValues($utterance, $intent);
@@ -68,6 +76,7 @@ class MainInterpreter extends CallbackInterpreter
                     );
 
                     $intent->addAttribute(AttributeResolver::getAttributeFor('is_resuming', false));
+                    $intent->addAttribute(AttributeResolver::getAttributeFor('is_free_pronation_request', false));
 
                     /** @var AbstractNLUEntity $entity */
                     foreach ($response->getEntities() as $entity) {
