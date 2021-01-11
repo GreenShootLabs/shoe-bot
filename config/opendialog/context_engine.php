@@ -11,6 +11,7 @@ return [
     'custom_attributes' => [
         'last_conversation' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
         'is_resuming' => \OpenDialogAi\Core\Attribute\BooleanAttribute::class,
+        'is_free_pronation_request' => \OpenDialogAi\Core\Attribute\BooleanAttribute::class,
 
         'dialogflow_message' => \OpenDialogAi\Core\Attribute\StringAttribute::class,
 

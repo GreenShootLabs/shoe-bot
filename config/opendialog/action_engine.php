@@ -12,5 +12,6 @@ return [
         \App\Bot\Actions\GetShoesAction::class,
         \App\Bot\Actions\GetSelectionNameAction::class,
         \App\Bot\Actions\ClearRunnerInfoAction::class,
+        \App\Bot\Actions\SetFreePronationRequestTrueAction::class,
     ],
 ];

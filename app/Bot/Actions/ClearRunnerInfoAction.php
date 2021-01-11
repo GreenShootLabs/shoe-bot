@@ -18,6 +18,7 @@ class ClearRunnerInfoAction extends BaseAction
             'gender',
             'frequency',
             'pronation',
+            'size',
             'last_conversation'
         ];
 
