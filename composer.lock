@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5c2d23c0a95b1bf4d92a1bc4e5e4c50b",
+    "content-hash": "a2236e3c006fb2aa9c4e145a1db47538",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2593,16 +2593,16 @@
         },
         {
             "name": "opendialogai/core",
-            "version": "0.7.3",
+            "version": "0.7.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/core.git",
-                "reference": "0479b7c823505e05bed2cb7f0f53fb1aa301369e"
+                "reference": "17a22a9d7445463cf02bfbf5cc28a16a6d93bb34"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/core/zipball/0479b7c823505e05bed2cb7f0f53fb1aa301369e",
-                "reference": "0479b7c823505e05bed2cb7f0f53fb1aa301369e",
+                "url": "https://api.github.com/repos/opendialogai/core/zipball/17a22a9d7445463cf02bfbf5cc28a16a6d93bb34",
+                "reference": "17a22a9d7445463cf02bfbf5cc28a16a6d93bb34",
                 "shasum": ""
             },
             "require": {
@@ -2623,7 +2623,7 @@
                 "matthewbdaly/artisan-standalone": "^0.0.8",
                 "mockery/mockery": "^1.2",
                 "orchestra/testbench": "^4.0",
-                "phpro/grumphp": "^0.16.0",
+                "phpro/grumphp": "^v0.18.1",
                 "phpunit/phpunit": "8.3.5",
                 "squizlabs/php_codesniffer": "^3.4"
             },
@@ -2632,6 +2632,7 @@
                 "laravel": {
                     "providers": [
                         "OpenDialogAi\\Core\\CoreServiceProvider",
+                        "OpenDialogAi\\Core\\Graph\\GraphServiceProvider",
                         "OpenDialogAi\\ConversationBuilder\\ConversationBuilderServiceProvider",
                         "OpenDialogAi\\ConversationEngine\\ConversationEngineServiceProvider",
                         "OpenDialogAi\\ConversationLog\\ConversationLogServiceProvider",
@@ -2663,7 +2664,7 @@
                     "OpenDialogAi\\SensorEngine\\": "src/SensorEngine",
                     "OpenDialogAi\\NlpEngine\\": "src/NlpEngine",
                     "OpenDialogAi\\Core\\Database\\": "database/",
-                    "OpenDialogAi\\Core\\Tests\\": "tests/"
+                    "OpenDialogAi\\Core\\Tests\\": "Tests/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2671,7 +2672,11 @@
                 "Apache-2.0"
             ],
             "description": "The OpenDialog Core package",
-            "time": "2020-10-21T10:52:15+00:00"
+            "support": {
+                "issues": "https://github.com/opendialogai/core/issues",
+                "source": "https://github.com/opendialogai/core/tree/0.7.4.1"
+            },
+            "time": "2021-01-07T09:16:15+00:00"
         },
         {
             "name": "opendialogai/dgraph-docker",
@@ -2707,16 +2712,16 @@
         },
         {
             "name": "opendialogai/webchat",
-            "version": "0.7.3",
+            "version": "0.7.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/opendialogai/webchat.git",
-                "reference": "a679771ec22ec6ce672568e87a09176625c83625"
+                "reference": "41a96e23ebdbe7104da60d3005399b123e3d15b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/opendialogai/webchat/zipball/a679771ec22ec6ce672568e87a09176625c83625",
-                "reference": "a679771ec22ec6ce672568e87a09176625c83625",
+                "url": "https://api.github.com/repos/opendialogai/webchat/zipball/41a96e23ebdbe7104da60d3005399b123e3d15b4",
+                "reference": "41a96e23ebdbe7104da60d3005399b123e3d15b4",
                 "shasum": ""
             },
             "require": {
@@ -2734,7 +2739,8 @@
                 "laravel": {
                     "providers": [
                         "OpenDialogAi\\Webchat\\PackageServiceProvider",
-                        "OpenDialogAi\\Webchat\\WebchatSettingsConfiguration\\WebchatSettingsConfigurationServiceProvider"
+                        "OpenDialogAi\\Webchat\\WebchatSettingsConfiguration\\WebchatSettingsConfigurationServiceProvider",
+                        "OpenDialogAi\\Webchat\\WebchatSetting\\WebchatSettingServiceProvider"
                     ]
                 }
             },
@@ -2755,7 +2761,11 @@
                 }
             ],
             "description": "Webchat front end component for the Open Dialog project",
-            "time": "2020-10-14T10:28:44+00:00"
+            "support": {
+                "issues": "https://github.com/opendialogai/webchat/issues",
+                "source": "https://github.com/opendialogai/webchat/tree/0.7.4.1"
+            },
+            "time": "2021-01-04T13:46:56+00:00"
         },
         {
             "name": "opis/closure",
@@ -7456,47 +7466,46 @@
         },
         {
             "name": "phpro/grumphp",
-            "version": "v0.16.2",
+            "version": "v0.18.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpro/grumphp.git",
-                "reference": "616caf2df4a9bf3c1bfd2d70ac3528a3b7b4f8c8"
+                "reference": "d07e59ebfdd48cf41d12b2af3670abcd1a2b01ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpro/grumphp/zipball/616caf2df4a9bf3c1bfd2d70ac3528a3b7b4f8c8",
-                "reference": "616caf2df4a9bf3c1bfd2d70ac3528a3b7b4f8c8",
+                "url": "https://api.github.com/repos/phpro/grumphp/zipball/d07e59ebfdd48cf41d12b2af3670abcd1a2b01ef",
+                "reference": "d07e59ebfdd48cf41d12b2af3670abcd1a2b01ef",
                 "shasum": ""
             },
             "require": {
-                "composer-plugin-api": "~1.0",
+                "composer-plugin-api": "~1.0 || ~2.0",
                 "doctrine/collections": "~1.2",
                 "ext-json": "*",
                 "gitonomy/gitlib": "^1.0.3",
                 "monolog/monolog": "~1.16 || ^2.0",
-                "php": "^7.1",
+                "php": "^7.2",
                 "seld/jsonlint": "~1.1",
-                "symfony/config": "~3.4 || ~4.0",
-                "symfony/console": "~3.4 || ~4.0",
-                "symfony/dependency-injection": "~3.4 || ~4.0",
-                "symfony/event-dispatcher": "~3.4 || ~4.0",
-                "symfony/filesystem": "~3.4 || ~4.0",
-                "symfony/finder": "~3.4 || ~4.0",
-                "symfony/options-resolver": "~3.4 || ~4.0",
-                "symfony/process": "~3.4 || ~4.0",
-                "symfony/yaml": "~3.4 || ~4.0"
+                "symfony/config": "~3.4 || ~4.0 || ~5.0",
+                "symfony/console": "~3.4 || ~4.0 || ~5.0",
+                "symfony/dependency-injection": "~3.4 || ~4.0 || ~5.0",
+                "symfony/event-dispatcher": "~3.4 || ~4.0 || ~5.0",
+                "symfony/filesystem": "~3.4 || ~4.0 || ~5.0",
+                "symfony/finder": "~3.4 || ~4.0 || ~5.0",
+                "symfony/options-resolver": "~3.4 || ~4.0 || ~5.0",
+                "symfony/process": "~3.4 || ~4.0 || ~5.0",
+                "symfony/yaml": "~3.4 || ~4.0 || ~5.0"
             },
             "require-dev": {
-                "brianium/paratest": "^2.2.0",
-                "composer/composer": "^1.8.5",
-                "friendsofphp/php-cs-fixer": "~2",
-                "jakub-onderka/php-parallel-lint": "^0.9.2",
-                "localheinz/composer-normalize": "^1.2",
-                "nikic/php-parser": "^3.0",
-                "phpspec/phpspec": "^5.1",
-                "phpunit/phpunit": "^7.5.12",
-                "sensiolabs/security-checker": "^5.0",
-                "squizlabs/php_codesniffer": "~2.9"
+                "brianium/paratest": "~3.1 || dev-master",
+                "composer/composer": "~1.9 || ^2.0@dev",
+                "ergebnis/composer-normalize": "~2.1",
+                "jakub-onderka/php-parallel-lint": "~1.0",
+                "nikic/php-parser": "~3.1",
+                "phpspec/phpspec": "~6.1",
+                "phpunit/phpunit": "^7.5.17",
+                "sensiolabs/security-checker": "~6.0",
+                "squizlabs/php_codesniffer": "~3.5"
             },
             "suggest": {
                 "atoum/atoum": "Lets GrumPHP run your unit tests.",
@@ -7506,11 +7515,11 @@
                 "codegyre/robo": "Lets GrumPHP run your automated PHP tasks.",
                 "designsecurity/progpilot": "Lets GrumPHP be sure that there are no vulnerabilities in your code.",
                 "doctrine/orm": "Lets GrumPHP validate your Doctrine mapping files.",
+                "ergebnis/composer-normalize": "Lets GrumPHP tidy and normalize your composer.json file.",
                 "friendsofphp/php-cs-fixer": "Lets GrumPHP automatically fix your codestyle.",
                 "friendsoftwig/twigcs": "Lets GrumPHP check Twig coding standard.",
                 "infection/infection": "Lets GrumPHP evaluate the quality your unit tests",
                 "jakub-onderka/php-parallel-lint": "Lets GrumPHP quickly lint your entire code base.",
-                "localheinz/composer-normalize": "Lets GrumPHP tidy and normalize your composer.json file.",
                 "maglnet/composer-require-checker": "Lets GrumPHP analyze composer dependencies.",
                 "malukenho/kawaii-gherkin": "Lets GrumPHP lint your Gherkin files.",
                 "nikic/php-parser": "Lets GrumPHP run static analyses through your PHP files.",
@@ -7557,7 +7566,11 @@
                 }
             ],
             "description": "A composer plugin that enables source code quality checks.",
-            "time": "2019-10-29T05:23:01+00:00"
+            "support": {
+                "issues": "https://github.com/phpro/grumphp/issues",
+                "source": "https://github.com/phpro/grumphp/tree/master"
+            },
+            "time": "2020-05-27T04:48:38+00:00"
         },
         {
             "name": "phpspec/prophecy",
@@ -9156,8 +9169,9 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.4"
+        "php": "^7.4",
+        "ext-json": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.0.0"
 }
