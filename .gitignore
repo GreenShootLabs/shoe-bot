@@ -15,6 +15,7 @@ yarn-error.log
 /public/js/app.js
 /public/css/app.css
 /public/css/*.css
+!/public/css/iframe.css
 /public/admin
 /public/fonts/vendor
 /public/vendor

@@ -69,6 +69,7 @@ class SetWebchatSettings extends Command
             WebchatSetting::CHATBOT_AVATAR_PATH => "$odUrl/images/logo.png",
             WebchatSetting::CHATBOT_NAME => 'Perfect Fit',
             WebchatSetting::CHATBOT_CSS_PATH => "$odUrl/css/client-custom.css",
+            WebchatSetting::PAGE_CSS_PATH => "$odUrl/css/iframe.css",
             WebchatSetting::USE_HUMAN_AVATAR => false,
             WebchatSetting::USE_BOT_AVATAR => true,
             WebchatSetting::COMMENTS => 'comments',
