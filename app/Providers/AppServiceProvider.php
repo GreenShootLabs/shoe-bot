@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Bot\Dialogflow\DialogflowClient;
 use App\Observers\UserObserver;
+use Illuminate\Support\Facades\URL;
 use App\User;
 use Illuminate\Support\ServiceProvider;
 
@@ -32,5 +33,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         User::observe(UserObserver::class);
+
+        if (config('app.force_https')) {
+            URL::forceScheme('https');
+        }
     }
 }

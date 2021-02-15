@@ -50,7 +50,7 @@ class OdTest extends TestCase
         $response->assertSeeInOrder([
             '<opendialog-chat>',
             'vendor/webchat/js/app.js',
-        ]);
+        ], false);
     }
 
     /**
@@ -65,8 +65,8 @@ class OdTest extends TestCase
         $response->assertStatus(200);
         $response->assertJson([
             WebchatSetting::GENERAL => [
-                WebchatSetting::TEAM_NAME => 'OpenDialog Webchat',
-                WebchatSetting::USE_HUMAN_AVATAR => true,
+                WebchatSetting::TEAM_NAME => 'OpenDialog',
+                WebchatSetting::USE_HUMAN_AVATAR => false,
                 WebchatSetting::USE_BOT_AVATAR => true,
             ]
         ]);
