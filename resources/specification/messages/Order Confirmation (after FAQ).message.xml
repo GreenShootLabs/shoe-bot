@@ -1,0 +1,21 @@
+<message-template>
+  <intent>intent.shoebot.confirmation</intent>
+  <name>Order Confirmation (after FAQ)</name>
+  <conditions>conditions:
+  - condition:
+      operation: eq
+      attributes:
+        attribute: session.is_resuming
+      parameters:
+        value: true</conditions>
+  <markup><message>
+  <text-message>Hope that helped!</text-message>
+    <button-message>
+        <text>Shall we get those {user.selection_name} to {user.street}?</text>
+        <button>
+            <text>Run it up my card!</text>
+            <callback>next</callback>
+        </button>
+    </button-message>
+</message></markup>
+</message-template>

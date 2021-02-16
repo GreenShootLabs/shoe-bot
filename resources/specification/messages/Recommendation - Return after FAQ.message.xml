@@ -1,0 +1,60 @@
+<message-template>
+  <intent>intent.shoebot.recommendations</intent>
+  <name>Recommendation - Return after FAQ</name>
+  <conditions>conditions:
+  - condition:
+      operation: eq
+      attributes:
+        attribute: session.is_resuming
+      parameters:
+        value: true</conditions>
+  <markup><message>
+  <text-message>Let's get back to these shiny sneakers!  Which ones did you prefer?</text-message>
+  
+  <list-message>
+      <item>
+           <rich-message>
+              <text>{user.shoe_1_desc}</text>
+             
+              <image>
+                <src>{user.shoe_1_img}</src>
+              </image>
+             
+              <button>
+                <text>Buy now</text>
+                <callback>next</callback>
+                <value>selection.one</value>
+              </button>
+           </rich-message>
+      </item>
+      <item>
+           <rich-message>
+              <text>{user.shoe_2_desc}</text>
+             
+              <image>
+                <src>{user.shoe_2_img}</src>
+              </image>
+             
+              <button>
+                <text>Buy now</text>
+                <callback>next</callback>
+                <value>selection.two</value>
+              </button>
+           </rich-message>
+      </item>
+      <item>
+           <rich-message>
+              <text>{user.shoe_3_desc}</text>
+              <image>
+                <src>{user.shoe_3_img}</src>
+              </image>
+              <button>
+                <text>Buy now</text>
+                <callback>next</callback>
+                <value>selection.three</value>
+              </button>
+           </rich-message>
+      </item>
+  </list-message>
+</message></markup>
+</message-template>

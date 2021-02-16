@@ -1,0 +1,8 @@
+<message-template>
+  <intent>intent.shoebot.surveyRequest</intent>
+  <name>Feedback Request</name>
+  <markup><message>
+  <text-message> 
+I'm all ears!  What, if anything, is missing to make this any runner's go-to experience for purchasing sneakers? </text-message>
+</message></markup>
+</message-template>

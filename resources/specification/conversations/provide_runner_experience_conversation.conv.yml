@@ -1,0 +1,111 @@
+conversation:
+  id: provide_runner_experience_conversation
+  scenes:
+    opening_scene:
+      intents:
+        - u:
+            i: intent.shoebot.provideRunnerExperience
+            interpreter: interpreter.shoebot.main
+            scene: get_info_scene
+            expected_attributes:
+              - id: session.is_resuming
+              - id: user.is_free_pronation_request
+              - id: user.experience
+              - id: user.distance
+              - id: user.surface
+              - id: user.frequency
+              - id: user.sturdiness
+              - id: user.gender
+              - id: user.size
+              - id: user.pronation
+            conditions:
+              - condition:
+                  operation: eq
+                  attributes:
+                    attribute: user.last_conversation
+                  parameters:
+                    value: get_runner_experience_conversation
+              - condition:
+                  operation: eq
+                  attributes:
+                    attribute: _intent.is_resuming
+                  parameters:
+                    value: false
+        - u:
+            i: intent.shoebot.resume
+            interpreter: interpreter.shoebot.main
+            scene: get_info_scene
+            expected_attributes:
+              - id: session.is_resuming
+              - id: user.is_free_pronation_request
+              - id: user.experience
+              - id: user.distance
+              - id: user.surface
+              - id: user.frequency
+              - id: user.sturdiness
+              - id: user.gender
+              - id: user.size
+              - id: user.pronation
+            conditions:
+              - condition:
+                  operation: eq
+                  attributes:
+                    attribute: user.last_conversation
+                  parameters:
+                    value: get_runner_experience_conversation
+              - condition:
+                  operation: eq
+                  attributes:
+                    attribute: _intent.is_resuming
+                  parameters:
+                    value: false
+        - u:
+            i: intent.shoebot.resume
+            interpreter: interpreter.shoebot.main
+            scene: get_info_scene
+            expected_attributes:
+              - id: session.is_resuming
+              - id: user.is_free_pronation_request
+              - id: user.pronation
+            conditions:
+              - condition:
+                  operation: eq
+                  attributes:
+                    attribute: user.last_conversation
+                  parameters:
+                    value: provide_runner_experience_conversation
+              - condition:
+                  operation: eq
+                  attributes:
+                    attribute: _intent.is_resuming
+                  parameters:
+                    value: true
+    get_info_scene:
+      intents:
+        - b:
+           i: intent.shoebot.runnerProfileComplete
+           u_virtual:
+             i: intent.shoebot.next
+           conditions:
+             - condition:
+                 operation: is_set
+                 attributes:
+                   attribute: user.gender
+             - condition:
+                 operation: is_set
+                 attributes:
+                   attribute: user.frequency
+             - condition:
+                 operation: is_set
+                 attributes:
+                   attribute: user.pronation
+           action:
+              id: action.shoebot.trackProgress
+              input_attributes:
+                - conversation.current_conversation
+              output_attributes:
+                - user.last_conversation
+           completes: true
+        - b:
+            i: intent.shoebot.runnerProfileIncomplete
+            completes: true

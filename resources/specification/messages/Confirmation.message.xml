@@ -1,0 +1,15 @@
+<message-template>
+  <intent>intent.shoebot.confirmation</intent>
+  <name>Confirmation</name>
+  <markup><message>
+  <text-message>Thanks. You're all set up.</text-message>
+    <text-message>We'll ship {user.selection_name} to the following address: {user.street}, {user.city}, {user.post_code}.</text-message>
+    <button-message>
+        <text>Ready to go?</text>
+        <button>
+            <text>Run it up my card!</text>
+            <callback>next</callback>
+        </button>
+    </button-message>
+</message></markup>
+</message-template>

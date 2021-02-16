@@ -1,0 +1,8 @@
+<message-template>
+  <intent>intent.shoebot.promptQuestionResponse</intent>
+  <name>Prompt Question</name>
+  <markup><message>
+<text-message>Happy to help!</text-message>
+ <text-message>👣 What question did you want to run by me?</text-message>
+</message></markup>
+</message-template>

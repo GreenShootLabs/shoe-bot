@@ -1,0 +1,98 @@
+conversation:
+  id: work_out_pronation_conversation
+  scenes:
+    opening_scene:
+      intents:
+        - u:
+            i: intent.shoebot.pronation
+            interpreter: interpreter.shoebot.main
+            action:
+              id: action.shoebot.setFreePronationRequestTrue
+              output_attributes:
+                - user.is_free_pronation_request
+        - u:
+            i: intent.shoebot.resume
+            interpreter: interpreter.shoebot.main
+            expected_attributes:
+              - id: session.is_resuming
+              - id: user.is_free_pronation_request
+            conditions:
+              - condition:
+                  operation: eq
+                  attributes:
+                    attribute: user.last_conversation
+                  parameters:
+                    value: provide_runner_experience_conversation
+              - condition:
+                  operation: eq
+                  attributes:
+                    attribute: _intent.is_resuming
+                  parameters:
+                    value: false
+              - condition:
+                  operation: eq
+                  attributes:
+                    attribute: user.pronation
+                  parameters:
+                    value: not_sure
+        - u:
+            i: intent.shoebot.resume
+            interpreter: interpreter.shoebot.main
+            expected_attributes:
+              - id: session.is_resuming
+              - id: user.is_free_pronation_request
+            conditions:
+              - condition:
+                  operation: eq
+                  attributes:
+                    attribute: user.last_conversation
+                  parameters:
+                    value: work_out_pronation_conversation
+              - condition:
+                  operation: eq
+                  attributes:
+                    attribute: _intent.is_resuming
+                  parameters:
+                    value: true
+              - condition:
+                  operation: eq
+                  attributes:
+                    attribute: user.pronation
+                  parameters:
+                    value: not_sure
+        - b:
+           i: intent.shoebot.request_pronation_process
+        - u:
+           i: intent.shoebot.not_now_pronation
+           expected_attributes:
+             - id: user.pronation
+           scene: not_now_pronation
+        - u:
+           i: intent.shoebot.describe_process
+           scene: continue_pronation
+    continue_pronation:
+      intents:
+        - b:
+           i: intent.shoebot.describe_pronation
+           action:
+             id: action.shoebot.trackProgress
+             input_attributes:
+               - conversation.current_conversation
+               - user.last_conversation
+               - user.is_free_pronation_request
+             output_attributes:
+               - user.last_conversation
+           completes: true
+    not_now_pronation:
+      intents:
+        - b:
+           i: intent.shoebot.not_now_pronation2
+           action:
+             id: action.shoebot.trackProgress
+             input_attributes:
+               - conversation.current_conversation
+               - user.last_conversation
+               - user.is_free_pronation_request
+             output_attributes:
+               - user.last_conversation
+           completes: true
