@@ -1,0 +1,53 @@
+conversation:
+  id: payment_request_conversation
+  scenes:
+    opening_scene:
+      intents:
+        - u:
+            i: intent.shoebot.resume
+            interpreter: interpreter.shoebot.main
+            expected_attributes:
+              - id: session.is_resuming
+              - id: user.is_free_pronation_request
+            conditions:
+              - condition:
+                  operation: eq
+                  attributes:
+                    attribute: user.last_conversation
+                  parameters:
+                    value: personal_information_conversation
+              - condition:
+                  operation: eq
+                  attributes:
+                    attribute: _intent.is_resuming
+                  parameters:
+                    value: false
+        - u:
+            i: intent.shoebot.resume
+            interpreter: interpreter.shoebot.main
+            expected_attributes:
+              - id: session.is_resuming
+              - id: user.is_free_pronation_request
+              - id: user.pronation
+            conditions:
+              - condition:
+                  operation: eq
+                  attributes:
+                    attribute: user.last_conversation
+                  parameters:
+                    value: payment_request_conversation
+              - condition:
+                  operation: eq
+                  attributes:
+                    attribute: _intent.is_resuming
+                  parameters:
+                    value: true
+        - b:
+            i: intent.shoebot.paymentSuccess
+            action:
+              id: action.shoebot.trackProgress
+              input_attributes:
+                - conversation.current_conversation
+              output_attributes:
+                - user.last_conversation
+            completes: true

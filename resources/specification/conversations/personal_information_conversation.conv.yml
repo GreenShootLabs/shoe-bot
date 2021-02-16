@@ -1,0 +1,62 @@
+conversation:
+  id: personal_information_conversation
+  scenes:
+    opening_scene:
+      intents:
+        - u:
+            i: intent.shoebot.resume
+            interpreter: interpreter.shoebot.main
+            expected_attributes:
+              - id: session.is_resuming
+              - id: user.is_free_pronation_request
+              - id: user.title
+              - id: user.first_name
+              - id: user.last_name
+              - id: user.street
+              - id: user.city
+              - id: user.post_code
+            conditions:
+              - condition:
+                  operation: eq
+                  attributes:
+                    attribute: user.last_conversation
+                  parameters:
+                    value: purchase_conversation
+              - condition:
+                  operation: eq
+                  attributes:
+                    attribute: _intent.is_resuming
+                  parameters:
+                    value: false
+        - u:
+            i: intent.shoebot.resume
+            interpreter: interpreter.shoebot.main
+            expected_attributes:
+              - id: session.is_resuming
+              - id: user.is_free_pronation_request
+              - id: user.pronation
+            conditions:
+              - condition:
+                  operation: eq
+                  attributes:
+                    attribute: user.last_conversation
+                  parameters:
+                    value: personal_information_conversation
+              - condition:
+                  operation: eq
+                  attributes:
+                    attribute: _intent.is_resuming
+                  parameters:
+                    value: true
+        - b:
+            i: intent.shoebot.confirmation
+            action:
+              id: action.shoebot.getSelectioName
+              input_attributes:
+                - conversation.current_conversation
+                - user.gender
+                - user.selection
+              output_attributes:
+                - user.last_conversation
+                - user.selection_name
+            completes: true

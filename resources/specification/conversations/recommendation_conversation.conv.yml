@@ -1,0 +1,74 @@
+conversation:
+  id: recommendation_conversation
+  scenes:
+    opening_scene:
+      intents:
+        - u:
+            i: intent.shoebot.resume
+            interpreter: interpreter.shoebot.main
+            expected_attributes:
+              - id: session.is_resuming
+              - id: user.is_free_pronation_request
+              - id: user.pronation
+            conditions:
+              - condition:
+                  operation: is_attribute_in_set
+                  attributes:
+                    attribute: user.last_conversation
+                  parameters:
+                    value: 'provide_runner_experience_conversation.work_out_pronation_conversation'
+              - condition:
+                  operation: eq
+                  attributes:
+                    attribute: _intent.is_resuming
+                  parameters:
+                    value: false
+              - condition:
+                  operation: is_attribute_not_in_set
+                  attributes:
+                    attribute1: _intent.pronation
+                    attribute2: user.pronation
+                  parameters:
+                    value: 'not_sure'
+        - u:
+            i: intent.shoebot.resume
+            interpreter: interpreter.shoebot.main
+            expected_attributes:
+              - id: session.is_resuming
+              - id: user.is_free_pronation_request
+              - id: user.pronation
+            conditions:
+              - condition:
+                  operation: eq
+                  attributes:
+                    attribute: user.last_conversation
+                  parameters:
+                    value: recommendation_conversation
+              - condition:
+                  operation: eq
+                  attributes:
+                    attribute: _intent.is_resuming
+                  parameters:
+                    value: true
+              - condition:
+                  operation: is_attribute_not_in_set
+                  attributes:
+                    attribute: user.pronation
+                  parameters:
+                    value: 'not_sure'
+        - b:
+           i: intent.shoebot.recommendations
+           action:
+             id: action.shoebot.getShoes
+             input_attributes:
+               - conversation.current_conversation
+               - user.gender
+             output_attributes:
+               - user.last_conversation
+               - user.shoe_1_img
+               - user.shoe_1_desc
+               - user.shoe_2_img
+               - user.shoe_2_desc
+               - user.shoe_3_img
+               - user.shoe_3_desc
+           completes: true

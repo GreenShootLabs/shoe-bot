@@ -1,0 +1,20 @@
+<message-template>
+  <intent>intent.shoebot.openingIntentResponse</intent>
+  <name>Welcome Message (After FAQ)</name>
+  <conditions>conditions:
+  - condition:
+      operation: eq
+      attributes:
+        attribute: session.is_resuming
+      parameters:
+        value: true</conditions>
+  <markup><message>
+    <button-message>
+        <text>Anything else you'd like to run by me?</text>
+        <button>
+            <text>Nope. Let's go</text>
+            <callback>next</callback>
+        </button>
+  </button-message>
+</message></markup>
+</message-template>

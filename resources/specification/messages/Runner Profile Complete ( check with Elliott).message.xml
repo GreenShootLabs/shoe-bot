@@ -1,0 +1,7 @@
+<message-template>
+  <intent>intent.shoebot.runnerProfileComplete</intent>
+  <name>Runner Profile Complete ( check with Elliott)</name>
+  <markup><message>
+  <empty-message></empty-message>
+</message></markup>
+</message-template>

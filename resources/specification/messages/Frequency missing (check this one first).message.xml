@@ -1,0 +1,15 @@
+<message-template>
+  <intent>intent.shoebot.runnerProfileIncomplete</intent>
+  <name>Frequency missing (check this one first)</name>
+  <conditions>conditions:
+  - condition:
+      operation: is_not_set
+      attributes:
+        attribute: user.frequency</conditions>
+  <markup><message>
+  <text-message> 
+Thanks for that.  I need some extra information to really run with this...so I'll need to ask you an extra question.  </text-message>
+  <text-message> 
+How often do you usually run? </text-message>
+</message></markup>
+</message-template>

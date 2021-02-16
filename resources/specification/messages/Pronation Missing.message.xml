@@ -1,0 +1,44 @@
+<message-template>
+  <intent>intent.shoebot.runnerProfileIncomplete</intent>
+  <name>Pronation Missing</name>
+  <conditions>conditions:
+  - condition:
+      operation: is_not_set
+      attributes:
+        attribute: user.pronation</conditions>
+  <markup><message>
+  <text-message>Thanks. You're nearly there. Time for a sprint finish...</text-message>
+  
+  <text-message>You may have heard of pronation. It's the way your foot rolls each time it lands.</text-message>
+    
+  <text-message>You probably also know that you'll be more comfortable if your shoes are suited to your pronation.</text-message>
+  
+  <button-message>
+    <text>Do you know your pronation type?</text>
+    
+    <button>
+      <text>Over pronate</text>
+      <callback>next</callback>
+      <value>pronation.over</value>
+    </button>
+  
+    <button>
+      <text>Neutral pronate</text>
+      <callback>next</callback>
+      <value>pronation.neutral</value>
+    </button>
+  
+    <button>
+      <text>Under pronate</text>
+      <callback>next</callback>
+      <value>pronation.under</value>
+    </button>
+  
+    <button>
+      <text>I'm not sure</text>
+      <callback>next</callback>
+      <value>pronation.not_sure</value>
+    </button>
+  </button-message>
+</message></markup>
+</message-template>

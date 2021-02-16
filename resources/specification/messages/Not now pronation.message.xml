@@ -1,0 +1,15 @@
+<message-template>
+  <intent>intent.shoebot.not_now_pronation2</intent>
+  <name>Not now pronation</name>
+  <markup><message disable_text="1">
+  <button-message>
+    <text>I get it. Your fellow commuters, office workmates or new mother-in-law aren't going to appreciate wet feet right now 😉 I'll recommend some options that suit most feet types.</text>
+    
+    <button>
+      <text>Show me recommendations</text>
+      <callback>next</callback>
+      <value>pronation.any</value>
+    </button>
+  </button-message>
+</message></markup>
+</message-template>

@@ -1,0 +1,67 @@
+<message-template>
+  <intent>intent.shoebot.describe_pronation</intent>
+  <name>Describe pronation</name>
+  <markup><message disable_text="1">
+	<text-message>Ok, once your feet are wet, take a walk over some brown paper. It'll need to be on a flat surface...</text-message>
+  
+	<text-message>Now check your footprint against these pics...</text-message>
+  
+  	<list-message>
+        <item>
+            <rich-message>
+                <text>Over pronate</text>
+              
+                <image>
+                    <src>/bot/images/wet_over.png</src>
+                </image>
+
+                <button>
+                    <text>Over pronate</text>
+                    <callback>next</callback>
+                    <value>pronation.over</value>
+                </button>
+            </rich-message>
+        </item>
+    
+        <item>
+            <rich-message>
+                <text>Neutral pronation</text>
+                <image>
+                    <src>/bot/images/wet_neutral.png</src>
+                </image>
+
+                <button>
+                    <text>Neutral pronation</text>
+                    <callback>next</callback>
+                    <value>pronation.neutral</value>
+                </button>
+            </rich-message>
+        </item>
+    
+        <item>
+            <rich-message>
+                <text>Under pronate</text>
+                <image>
+                    <src>/bot/images/wet_under.png</src>
+                </image>
+
+                <button>
+                    <text>Under pronate</text>
+                    <callback>next</callback>
+                    <value>pronation.under</value>
+                </button>
+            </rich-message>
+        </item>
+    </list-message>
+  
+    <button-message>
+      <text>Not sure?</text>
+
+      <button>
+        <text>I'm not sure</text>
+        <callback>next</callback>
+      	<value>pronation.any</value>
+      </button>
+    </button-message>
+</message></markup>
+</message-template>
