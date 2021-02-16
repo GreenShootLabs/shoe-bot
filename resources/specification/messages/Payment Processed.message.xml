@@ -1,0 +1,28 @@
+<message-template>
+  <intent>intent.shoebot.paymentSuccess</intent>
+  <name>Payment Processed</name>
+  <markup><message>
+  <image-message>
+    <src>https://cms-assets.tutsplus.com/uploads/users/523/posts/32694/preview_image/tutorial-preview-small.png</src>
+    <url new_tab="true">{url}</url>
+  </image-message>
+  <text-message> 
+    Your payment was successfully processed.
+  </text-message>
+  <button-message>
+    <text>Hey, don't make a run for it quite yet! We'd like to know how we could make this chatbot a perfect fit for your runner needs.</text>
+    <button>
+      <text>Okay!</text>
+      <callback>next</callback>
+      <value>agreement.true</value>
+      <display>true</display>
+    </button>
+    <button>
+      <text>No thanks.</text>>
+      <callback>next</callback>
+      <value>agreement.false</value>
+      <display>true</display>
+    </button>
+  </button-message>
+</message></markup>
+</message-template>

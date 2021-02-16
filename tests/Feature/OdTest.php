@@ -65,7 +65,7 @@ class OdTest extends TestCase
         $response->assertStatus(200);
         $response->assertJson([
             WebchatSetting::GENERAL => [
-                WebchatSetting::TEAM_NAME => 'OpenDialog',
+                WebchatSetting::TEAM_NAME => 'Perfect Fit',
                 WebchatSetting::USE_HUMAN_AVATAR => false,
                 WebchatSetting::USE_BOT_AVATAR => true,
             ]

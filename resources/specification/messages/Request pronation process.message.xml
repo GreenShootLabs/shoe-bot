@@ -1,0 +1,24 @@
+<message-template>
+  <intent>intent.shoebot.request_pronation_process</intent>
+  <name>Request pronation process</name>
+  <markup><message disable_text="1">
+  <text-message>No biggie. Here's a nifty way to find out your pronation.</text-message>
+  
+  <text-message>Wet your feet and step on a flat surface like a brown piece of paper.</text-message>
+  
+  <button-message>
+    <text>Can you do this now?</text>
+    
+    <button>
+      <text>Yep. I'm wetting my feet as we speak</text>
+      <callback>intent.shoebot.describe_process</callback>
+    </button>
+    
+    <button>
+      <text>It's a tad awkward</text>
+      <callback>intent.shoebot.not_now_pronation</callback>
+      <value>pronation.any</value>
+    </button>
+  </button-message>
+</message></markup>
+</message-template>

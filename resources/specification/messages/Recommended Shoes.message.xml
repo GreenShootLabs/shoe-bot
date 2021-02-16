@@ -1,0 +1,53 @@
+<message-template>
+  <intent>intent.shoebot.recommendations</intent>
+  <name>Recommended Shoes</name>
+  <markup><message>
+  <text-message>All done! After our chat, I think these could be your perfect fit...</text-message>
+  
+  <list-message>
+      <item>
+           <rich-message>
+              <text>{user.shoe_1_desc}</text>
+             
+              <image>
+                <src>{user.shoe_1_img}</src>
+              </image>
+             
+              <button>
+                <text>Buy now</text>
+                <callback>next</callback>
+                <value>selection.one</value>
+              </button>
+           </rich-message>
+      </item>
+      <item>
+           <rich-message>
+              <text>{user.shoe_2_desc}</text>
+             
+              <image>
+                <src>{user.shoe_2_img}</src>
+              </image>
+             
+              <button>
+                <text>Buy now</text>
+                <callback>next</callback>
+                <value>selection.two</value>
+              </button>
+           </rich-message>
+      </item>
+      <item>
+           <rich-message>
+              <text>{user.shoe_3_desc}</text>
+              <image>
+                <src>{user.shoe_3_img}</src>
+              </image>
+              <button>
+                <text>Buy now</text>
+                <callback>next</callback>
+                <value>selection.three</value>
+              </button>
+           </rich-message>
+      </item>
+  </list-message>
+</message></markup>
+</message-template>

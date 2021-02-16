@@ -1,0 +1,26 @@
+<message-template>
+  <intent>intent.shoebot.runnerProfileIncomplete</intent>
+  <name>Gender Missing</name>
+  <conditions>conditions:
+  - condition:
+      operation: is_not_set
+      attributes:
+        attribute: user.gender</conditions>
+  <markup><message>
+  <button-message>
+    <text>Are you looking for men's or women's trainers?</text>
+    
+    <button>
+      <text>Women's</text>
+      <callback>next</callback>
+      <value>gender.female</value>
+    </button>
+    
+    <button>
+      <text>Men's</text>
+      <callback>next</callback>
+      <value>gender.male</value>
+    </button>
+  </button-message>
+</message></markup>
+</message-template>

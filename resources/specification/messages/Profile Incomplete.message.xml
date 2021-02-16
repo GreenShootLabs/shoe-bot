@@ -1,0 +1,27 @@
+<message-template>
+  <intent>intent.shoebot.runnerProfileIncomplete</intent>
+  <name>Profile Incomplete</name>
+  <conditions>conditions:
+  - condition:
+      operation: is_not_set
+      attributes:
+        attribute: user.pronation
+  - condition:
+      operation: is_not_set
+      attributes:
+        attribute: user.gender
+  - condition:
+      operation: is_not_set
+      attributes:
+        attribute: user.frequency
+  - condition:
+      operation: is_not_set
+      attributes:
+        attribute: user.size</conditions>
+  <markup><message>
+  <text-message>Ok great. First things first: tell me what kind of runner you are, so I can recommend the best options.</text-message>
+  <text-message>Tell me your level of experience, how often you tend to run, and whether you're normally on or off-road.</text-message>
+  <text-message>Don't forget to mention your gender, size and pronation. 😉</text-message>
+  <text-message>For example, “I'm looking for women shoes, size 5.5, over pronation. I usually run 5km to 7km in the park each day."</text-message>
+</message></markup>
+</message-template>
