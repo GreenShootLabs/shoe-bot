@@ -4,8 +4,34 @@ conversation:
     opening_scene:
       intents:
         - u:
+            i: intent.shoebot.promptQuestion
+            scene: qa_scene
+        - u:
             i: intent.core.NoMatch
-            interpreter: interpreter.core.callbackInterpreter
+            scene: actual_no_match_scene
+            interpreter: interpreter.shoebot.faq
+        - u:
+            i: intent.app.dialogflow
+            interpreter: interpreter.shoebot.faq
+            expected_attributes:
+              - id: session.dialogflow_message
+        - u:
+            i: intent.app.dialogflowNoMatch
+            interpreter: interpreter.shoebot.faq
+            expected_attributes:
+              - id: session.dialogflow_message
         - b:
-            i: intent.core.NoMatchResponse
+            i: intent.shoebot.faqResponse
+            completes: true
+            u_virtual:
+              i: intent.shoebot.resume
+    qa_scene:
+      intents:
+        - b:
+            i: intent.shoebot.promptQuestionResponse
+            completes: true
+    actual_no_match_scene:
+      intents:
+        - b:
+            i: intent.shoebot.actualNoMatchResponse
             completes: true

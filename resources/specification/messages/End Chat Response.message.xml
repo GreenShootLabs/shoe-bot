@@ -1,0 +1,16 @@
+<message-template>
+  <intent>intent.shoebot.endChatResponse</intent>
+  <name>End Chat Response</name>
+  <markup><message>
+  <text-message> 
+Thanks for trying The Perfect Fit!</text-message>    
+  <button-message>
+    <text>We hope you enjoyed this demo!  Contact us to get your very own perfect fit!</text>
+    <button>
+      <text>Chat again!</text>
+      <callback>WELCOME</callback>
+      <display>true</display>
+    </button>
+  </button-message>
+</message></markup>
+</message-template>

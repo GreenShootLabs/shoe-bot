@@ -1,0 +1,27 @@
+<message-template>
+  <intent>intent.shoebot.endChatResponse</intent>
+  <name>End Chat Response (After Feedback)</name>
+  <conditions>conditions:
+  - condition:
+      operation: eq
+      attributes:
+        attribute: conversation.current_conversation
+      parameters:
+        value: feedback_conversation
+  - condition:
+      operation: is_set
+      attributes:
+        attribute: user.survey_answer</conditions>
+  <markup><message>
+  <text-message> 
+Thanks for trying The Perfect Fit and giving your feedback!</text-message>    
+  <button-message>
+    <text>We hope you enjoyed this demo!  Contact us to get your very own perfect fit!</text>
+    <button>
+      <text>Chat again!</text>
+      <callback>WELCOME</callback>
+      <display>true</display>
+    </button>
+  </button-message>
+</message></markup>
+</message-template>

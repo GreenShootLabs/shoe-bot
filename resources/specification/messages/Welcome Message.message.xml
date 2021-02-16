@@ -1,0 +1,18 @@
+<message-template>
+  <intent>intent.shoebot.openingIntentResponse</intent>
+  <name>Welcome Message</name>
+  <markup><message>
+    <text-message>Hey, welcome to Perfect Fit - your companion to find the perfect pair of running shoes.</text-message>
+    <button-message>
+        <text>Ready to hit the ground running?</text>
+        <button>
+            <text>Yep. Let's go</text>
+            <callback>next</callback>
+        </button>
+        <button>
+            <text>👆I've got a question!</text>
+            <callback>intent.shoebot.promptQuestion</callback>
+        </button>
+  </button-message>
+</message></markup>
+</message-template>

@@ -1,0 +1,7 @@
+<message-template>
+  <intent>intent.shoebot.faqResponse</intent>
+  <name>FAQ Response</name>
+  <markup><message>
+  {session.dialogflow_message}
+</message></markup>
+</message-template>

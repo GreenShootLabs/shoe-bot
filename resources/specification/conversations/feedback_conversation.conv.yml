@@ -1,0 +1,65 @@
+conversation:
+  id: feedback_conversation
+  scenes:
+    opening_scene:
+      intents:
+        - u:
+            i: intent.shoebot.resume
+            interpreter: interpreter.shoebot.main
+            expected_attributes:
+              - id: session.is_resuming
+              - id: user.is_free_pronation_request
+              - id: user.agreement
+            conditions:
+              - condition:
+                  operation: eq
+                  attributes:
+                    attribute: user.last_conversation
+                  parameters:
+                    value: payment_request_conversation
+              - condition:
+                  operation: eq
+                  attributes:
+                    attribute: _intent.agreement
+                  parameters:
+                    value: true
+            scene: survey_scene
+        - u:
+            i: intent.shoebot.resume
+            interpreter: interpreter.shoebot.main
+            expected_attributes:
+              - id: session.is_resuming
+              - id: user.is_free_pronation_request
+              - id: user.agreement
+            conditions:
+              - condition:
+                  operation: eq
+                  attributes:
+                    attribute: user.last_conversation
+                  parameters:
+                    value: payment_request_conversation
+              - condition:
+                  operation: eq
+                  attributes:
+                    attribute: _intent.agreement
+                  parameters:
+                    value: false
+            scene: followup_scene
+    survey_scene:
+      intents:
+          - b:
+              i: intent.shoebot.surveyRequest
+          - u:
+              i: intent.shoebot.feedback
+              interpreter: interpreter.shoebot.feedback
+              expected_attributes:
+                - id: session.is_resuming
+                - id: user.survey_answer
+              scene: followup_scene
+    followup_scene:
+      intents:
+        - b:
+            i: intent.shoebot.endChatResponse
+            action:
+              id: action.shoebot.clearRunnerInfo
+            completes: true

@@ -1,0 +1,63 @@
+<message-template>
+  <intent>intent.shoebot.contactInformationRequest</intent>
+  <name>Personal Information (make fields required)</name>
+  <markup><message>
+  <fp-form-message>
+    <text>Amazing! Let's run through your details and get these shipped to you!</text>
+    <submit_text>Submit</submit_text>
+    <callback>next</callback>
+    <auto_submit>false</auto_submit>
+
+    <element>
+      <element_type>select</element_type>
+      <name>title</name>
+      <display>Title</display>
+      <options>
+        <option>
+          <key>mr</key>
+          <value>Mr.</value>
+        </option>
+        <option>
+          <key>mrs</key>
+          <value>Mrs.</value>
+        </option>
+        <option>
+          <key>other</key>
+          <value>Other</value>
+        </option>
+      </options>
+    </element>
+    
+    <element>
+      <element_type>text</element_type>
+      <name>first_name</name>
+      <display>First Name</display>
+    </element>
+    
+    <element>
+      <element_type>text</element_type>
+      <name>last_name</name>
+      <display>Last Name</display>
+    </element>
+    
+    <element>
+      <element_type>text</element_type>
+      <name>street</name>
+      <display>Street</display>
+    </element>
+    
+    <element>
+      <element_type>text</element_type>
+      <name>city</name>
+      <display>City</display>
+    </element>
+    
+    <element>
+      <element_type>text</element_type>
+      <name>post_code</name>
+      <display>Postal Code</display>
+    </element>
+
+  </fp-form-message>
+</message></markup>
+</message-template>

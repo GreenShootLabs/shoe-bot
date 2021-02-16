@@ -1,0 +1,12 @@
+conversation:
+  id: end_chat_conversation
+  scenes:
+    opening_scene:
+      intents:
+        - u:
+            i: intent.app.end_chat
+        - b:
+            i: intent.shoebot.endChatResponse
+            action:
+              id: action.shoebot.clearRunnerInfo
+            completes: true

@@ -1,0 +1,16 @@
+<message-template>
+  <intent>intent.shoebot.paymentSuccess</intent>
+  <name>Payment after FAQ</name>
+  <conditions>conditions:
+  - condition:
+      operation: eq
+      attributes:
+        attribute: session.is_resuming
+      parameters:
+        value: true</conditions>
+  <markup><message>
+  
+  <text-message> 
+👣 Anything else you'd like to run by me today?  </text-message>
+</message></markup>
+</message-template>
