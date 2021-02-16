@@ -42,7 +42,8 @@ jobs:
           key: v1-dependencies-{{ checksum "composer.lock" }}
 
       # Set up dgraph
-      - run: cd dgraph && docker-compose up -d
+      - run: cd dgraph && echo 'DGRAPH_AUTH_TOKEN=circlecidgraphauthtoken' > .env; docker-compose up -d
+
 
       # Set up port forwarding from dgraph server
       - run: sudo apt-get -y update; sleep 1; sudo apt-get -y install socat
@@ -64,7 +65,7 @@ jobs:
       - run:
           name: "Setup custom environment variables"
           command: |
-            echo 'export OVERWRITE_DGRAPH_URL="http://localhost"' >> $BASH_ENV; echo 'export OVERWRITE_DGRAPH_PORT="8080"' >> $BASH_ENV
+            echo 'export OVERWRITE_DGRAPH_URL="http://localhost"' >> $BASH_ENV; echo 'export OVERWRITE_DGRAPH_PORT="8080"' >> $BASH_ENV; echo 'export OVERWRITE_DGRAPH_AUTH_TOKEN=circlecidgraphauthtoken' >> $BASH_ENV
 
       - run: phpdbg -qrr ./vendor/bin/phpunit --coverage-html build/coverage-report --configuration phpunit-ci.xml -d memory_limit=8000M
 
@@ -115,8 +116,6 @@ jobs:
             - ./vendor
           key: v1-dependencies-{{ checksum "composer.lock" }}
 
-      - run: bash update-web-chat.sh -yip
-
   docker_build:
     docker:
       - image: circleci/php:7.4.10-node-browsers
@@ -142,25 +141,9 @@ workflows:
   version: 2
   build_workflow:
     jobs:
-      - tests:
-          filters:
-            branches:
-              ignore:
-                - /dev.*/
-                - /staging.*/
-      - node_build:
-          filters:
-            branches:
-              ignore:
-                - /dev.*/
-                - /staging.*/
+      - tests
+      - node_build
       - docker_build:
           requires:
             - tests
             - node_build
-      - docker_build:
-          filters:
-            branches:
-              only:
-                - /dev.*/
-                - /staging.*/
